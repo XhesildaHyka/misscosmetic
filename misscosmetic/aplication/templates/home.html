@@ -1,0 +1,48 @@
+<!-- Latest Arrivals -->
+
+<main>
+    <section class="container my-5">
+      <h1 class="text-center mb-5" style="font-size: 2.5rem; font-weight: 700; color: #333; letter-spacing: 1px; text-transform: uppercase;">
+        Latest Arrivals
+      </h1>
+  
+      <div class="product-scroll d-flex overflow-auto" style="gap: 25px;">
+        {% for product in arrival %}
+        <div class="card mx-2 d-flex flex-column"
+          style="min-width: 280px; height: 550px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;">
+          
+          <a href="{% url 'arrivalpage' product.pk %}">
+            <div class="image-container" style="position: relative; width: 100%; height: 300px; overflow: hidden; border-radius: 15px;">
+              <!-- Product Image -->
+              {% if product.arrival_image %}
+              <img src="{{ product.arrival_image.url }}" class="card-img-top" alt="..."
+                style="height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+              {% else %}
+              <img src="{% static 'images/default-image.jpg' %}" class="card-img-top" alt="No image available"
+                style="height: 100%; object-fit: cover;">
+              {% endif %}
+            </div>
+          </a>
+  
+          <div class="card-body text-center d-flex flex-column justify-content-end flex-grow-1" style="padding: 1.5rem;">
+            <h5 class="card-title mb-4" style="font-weight: 600; font-size: 1.3rem; color: #333; line-height: 1.4;">
+              {{ product.arrival_title }}
+            </h5>
+  
+            <div class="star-rating mb-3">
+              {% for i in range_5 %}
+              <span class="star {% if i <= product.rating %}filled{% endif %}" style="color: #f8d64e;">&#9733;</span>
+              {% endfor %}
+            </div>
+  
+            <a href="{% url 'arrivalpage' product.pk %}" class="ngjyra btn mt-auto"
+              style="padding: 14px 30px; font-size: 1.1rem; font-weight: 600; border-radius: 30px; background-color: #d63384; color: white; text-transform: uppercase; letter-spacing: 0.05em; transition: background-color 0.3s ease, transform 0.2s ease;">
+              VIEW NOW
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+  

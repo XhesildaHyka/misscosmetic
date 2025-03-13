@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ makeup.name }} - Makeup Collection</title>
+</head>
+<body>
+    <header>
+        <h1>{{ makeup.name }} Makeup Collection</h1>
+    </header>
+
+    <section>
+        <h2>Available Products</h2>
+        <ul>
+            {% for product in make %}
+                <li>
+                    <h3>{{ product.name }}</h3>
+                    <p>{{ product.description }}</p>
+                    <p>Price: ${{ product.price }}</p>
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                </li>
+            {% empty %}
+                <p>No products found in this category.</p>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <footer>
+        <p>Powered by MissCosmetics</p>
+    </footer>
+</body>
+</html>

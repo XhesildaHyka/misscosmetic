@@ -1,0 +1,117 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<!-- MAIN SECTION -->
+<section class="krye">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Text Section -->
+      <div class="col-lg-6 text-start">
+        <h1 class="fw-bold">Beauty tailored for you!</h1>
+        <p class="lead fw-bold" style="font-family: Georgia;">Shine every day, with style and confidence!</p>
+      </div>
+    </div>
+
+    <div class="image-container">
+      {% if carousel_images %}
+        {% for image in carousel_images %}
+          <img src="{{ image.image1.url }}" alt="Moisturizer" class="img-fluid rounded shadow image main-image">
+          <img src="{{ image.image2.url }}" alt="Additional Image" class="bottom-left-image">
+          <img src="{{ image.image3.url }}" alt="Image" class="top-right-image">
+        {% endfor %}
+      {% else %}
+        <p>No carousel images available</p>
+      {% endif %}
+    </div>
+
+    <!-- Product Info -->
+    <div class="product-info">
+      <h2 class="fw-bold">MissCosmetics</h2>
+      <p>Skincare products with natural and moisturizing ingredients that help achieve healthy and radiant skin.</p>
+      <a href="#arrivals" class="scroll">Scroll down</a>
+    </div>
+  </div>
+</section>
+
+<!-- NEW ARRIVALS -->
+<main>
+  <section id="arrivals" class="container my-5">
+    <h1 class="text-center mb-4">Latest:</h1>
+
+    <div class="product-scroll d-flex overflow-auto">
+      {% for product in arrival %}
+        <div class="card mx-2 d-flex flex-column card-custom">
+          <a href="{% url 'arrivalpage' product.pk %}">
+            <div class="image-container" style="position: relative; width: 100%; height: 300px;">
+              {% if product.arrival_image %}
+                <img src="{{ product.arrival_image.url }}" class="card-img-top img-fluid-custom" alt="{{ product.arrival_title }}">
+              {% else %}
+                <img src="{% static 'images/default-image.jpg' %}" class="card-img-top img-fluid-custom" alt="No image available">
+              {% endif %}
+            </div>
+          </a>
+          <div class="card-body text-center d-flex flex-column justify-content-end flex-grow-1" style="padding: 1.25rem;">
+            <h5 class="card-title mb-3" style="font-weight: 600; font-size: 1.25rem;">{{ product.arrival_title }}</h5>
+
+            <div class="star-rating mb-3">
+              {% for i in range_5 %}
+                {% if i < product.arrival_rating %}
+                  <i class="fa fa-star checked"></i>
+                {% else %}
+                  <i class="fa fa-star"></i>
+                {% endif %}
+              {% endfor %}
+            </div>
+
+           
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+</main>
+
+<!-- offer -->
+
+
+
+<!-- <main>
+  <div class="container my-5">
+    <h1 class="text-center mb-4" style="font-size: 2.5rem; font-weight: 800; color: #222;">Latest Arrivals</h1>
+    <div class="product-scroll">
+      {% for product in arrival %}
+      <div class="card product-card mx-2 d-flex flex-column" style="min-width: 250px; height: 500px;">
+        <a href="{% url 'arrivalpage' product.pk %}">
+          <div class="image-container" style="position: relative; width: 100%; height: 300px;">
+            {% if product.arrival_image %}
+            <img src="{{ product.arrival_image.url }}" class="product-image" alt="...">
+            {% else %}
+            <img src="{% static 'images/default-image.jpg' %}" class="product-image" alt="No image available">
+            {% endif %}
+          </div>
+        </a>
+        <div class="card-body text-center d-flex flex-column justify-content-end flex-grow-1">
+          <h5 class="card-title mb-3" style="font-weight: 700; font-size: 1.3rem; color: #333;">{{ product.arrival_title }}</h5>
+          <div class="star-rating mb-3">
+            {% for i in range_5 %}
+            <span class="star {% if i <= product.rating %}filled{% endif %}">&#9733;</span>
+            {% endfor %}
+          </div>
+          <a href="{% url 'arrivalpage' product.pk %}" class="btn btn-custom mt-auto">View Now</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</main> -->
+
+
+{% endblock %}
