@@ -1,307 +1,287 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    overflow-x: hidden;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  overflow-x: hidden;
 }
 
 /* Navbar */
 .navbar {
-    background: #d63384;
-    padding: 10px 15px;
+  background: #d63384;
+  padding: 10px 15px;
 }
 
 .navbar-brand {
-    font-size: 1.5rem;
-    color: white !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  color: white !important;
+  font-weight: bold;
+  text-decoration: none;
 }
 
+.navbar-brand img {
+  height: 40px;
+  width: auto;
+}
 .nav-link {
-    color: white!important; 
-    font-weight: 500;
+  color: white!important; 
+  font-weight: 500;
 }
 
 .navbar-nav {
-    color: #e9e6bf !important;
+  color: #e9e6bf !important;
 }
 
-/* Main Section */
+/* Arrivals */
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-body a {
+  transition: background-color 0.3s ease;
+}
+
+.card-body a:hover {
+  background-color: #d63384;
+}
+
+/* Krye Section */
 .krye {
-    background: linear-gradient(to right, #f8d6e3, #f3e2e1);
-    color: #3d3d3d;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 40px 10px;
-    position: relative;
+  background: linear-gradient(to right, #f8d6e3, #f3e2e1);
+  color: #3d3d3d;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding-top: 0px;
+  font-size: xx-large;
 }
 
-/* Image Container */
-.krye .image-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 500px; 
-    width: 100%;
-    max-width: 1000px;
+/* Image Styling */
+.firstimage {
+  width: 350px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+  margin: -4px auto 0;
 }
 
-.krye img.main-image {
-    position: absolute;
-    width: 380px;
-    height: 450px;
-    border-radius: 15px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
-    border: 4px solid white;
-    margin-top: 20px;
-    z-index: 2; /* Keep main image in front */
+.bottom-left-image {
+  position: absolute;
+  width: 350px;
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* DIAGONAL POSITIONING */
-.krye .bottom-left-image {
-    position: absolute;
-    top: 50px;
-    left: -100px;
-    width: 320px;
-    border-radius: 15px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-    border: 4px solid white;
-    z-index: 1;
+.bottom-left-image {
+  top: 106px;
+  right: 57px;
+  border: 4px solid white;
 }
 
-.krye .top-right-image {
-    position: absolute;
-    bottom: 50px;
-    right: -100px;
-    width: 320px;
-    border-radius: 15px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-    border: 4px solid white;
-    z-index: 1;
+.top-right-image {
+  bottom: 105px;
+  left: 111px;
+}
+.top-right-image{
+  position: absolute;
+  width: 350px;
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  bottom: 105px;
+  left: 111px;
 }
 
-/* Product Info */
 .product-info {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    background: rgba(255, 243, 246, 0.9);
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    max-width: 300px;
+  position: absolute;
+  bottom: -2px;
+  right: 40px;
+  background: rgba(255, 243, 246, 0.9);
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 300px;
 }
 
 .product-info h2 {
-    font-size: 1.8rem;
-    color: #d63384;
-    font-family: 'Georgia', serif;
-    font-weight: 700;
+  font-size: 1.8rem;
+  color: #d63384;
+  font-family: 'Georgia', serif;
+  font-weight: 700;
 }
 
 .product-info p {
-    font-size: 1.1rem;
-    color: #555;
-    font-family: 'Montserrat';
-    line-height: 1.4;
-    margin-top: 10px;
+  font-size: 1.1rem;
+  color: #555;
 }
 
-/* Button */
-.scroll {
-    background: #d63384;
-    color: white;
-    font-size: 1rem;
-    padding: 12px 20px;
-    border-radius: 30px;
-    transition: 0.3s;
-    display: inline-block;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-decoration: none;
-    font-family: 'Georgia', serif;
+.btn-custom {
+  background: #d63384;
+  color: white;
+  font-size: 1rem;
+  padding: 15px 25px;
+  border-radius: 30px;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
-.scroll:hover {
-    background: #79053f;
-}
-
-/* Headings */
 .krye .col-lg-6.text-start h1 {
-    font-family: 'Georgia', serif;
-    font-size: 3rem;
+      font-family: 'Georgia', serif;
+    font-size: 2ren;
     font-weight: 700;
     color: #d63384;
-    margin-bottom: 20px;
-    line-height: 1.2;
+    margin-bottom: 1px;
+    margin-top: -26px;
+    line-height: -17.8;
+    white-space: nowrap;
+    margin-left: -17px;
+    font-size: x-large;
 }
 
-.krye .col-lg-6.text-start p {
-    font-family: 'Helvetica Neue', sans-serif;
-    font-size: 1.2rem;
-    color: #3d3d3d;
-    font-weight: 400;
-    line-height: 1.6;
-    max-width: 500px;
-    margin: 0 auto;
+/* Scroll Down Styling */
+.scroll {
+  text-decoration: none;
+  background: #d63384;
+  color: white;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: none; /* Remove any transition */
+}
+
+/* Remove Hover Effect for Scroll */
+.scroll:hover {
+  background: #d63384; /* Keeps the same background on hover */
+  color: white; /* Keeps the same color on hover */
+}
+
+@keyframes bounce {
+  0%, 100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-10px);
+  }
 }
 
 /* Responsive Fixes */
 @media screen and (max-width: 1024px) {
-    /* Reduce Image Sizes */
-    .krye img.main-image {
-        width: 300px;
-    }
-
-    .krye .bottom-left-image,
-    .krye .top-right-image {
-        width: 280px;
-    }
-
-    /* Adjust Product Info */
-    .product-info {
-        right: 10px;
-        padding: 20px;
-    }
-
-    .product-info h2 {
-        font-size: 1.5rem;
-    }
-
-    .product-info p {
-        font-size: 1rem;
-    }
+  .firstimage, .bottom-left-image, .top-right-image {
+      width: 280px;
+      
+  }
+  .product-info {
+      right: 10px;
+      padding: 20px;
+  }
+  .krye .col-lg-6.text-start h1 {
+    font-family: 'Georgia', serif;
+  font-size: 2ren;
+  font-weight: 700;
+  color: #d63384;
+  margin-bottom: 1px;
+  margin-top: -26px;
+  line-height: -17.8;
+  white-space: nowrap;
+  /* padding-left: 0; */
+  /* padding-right: 20px; */
+  /* margin-right: 9px; */
+  margin-left: -17px;
+  font-size: 50px;
+}
 }
 
-/* MOBILE VERSION */
 @media screen and (max-width: 768px) {
-    .krye {
-        flex-direction: column;
-        padding: 30px 10px;
-    }
-
-    .krye .image-container {
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-        height: auto;
-    }
-
-    .krye img.main-image {
-        width: 280px;
-        position: relative;
-        margin-top: 20px;
-    }
-
-    .krye .bottom-left-image,
-    .krye .top-right-image {
-        width: 250px;
-        position: relative;
-        margin-top: 10px;
-    }
-
-    /* Center Product Info */
-    .product-info {
-        position: relative;
-        max-width: 90%;
-        padding: 15px;
-        margin-top: 10px;
-    }
-
-    .product-info h2 {
-        font-size: 1.4rem;
-    }
-
-    .product-info p {
-        font-size: 1rem;
-    }
-
-    .scroll {
-        font-size: 0.9rem;
-        padding: 10px 15px;
-    }
+  .krye {
+      padding: 30px 10px;
+  }
+  .firstimage, .bottom-left-image, .top-right-image {
+      width: 250px;
+      position: relative;
+      margin-top: 10px;
+  }
+  .product-info {
+      position: relative;
+      padding: 15px;
+      margin-top: 10px;
+      max-width: 90%;
+  }
 }
-.product-card {
-    border-radius: 15px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
 
-  .product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+@media screen and (max-width: 425px) {
+  .firstimage, .bottom-left-image, .top-right-image {
+      width: 200px;
+      margin: 0 auto;
   }
+  .product-info {
+      padding: 10px;
+  }
+  .product-info h2 {
+      font-size: 1.4rem;
+  }
+}
 
-  .product-image {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
+/* Button Hover Effect */
+.btn-light:hover {
+  background-color: #ff8ab6 !important;
+  color: white;
+  transform: scale(1.05);
+}
 
-  .product-image:hover {
-    transform: scale(1.05);
-  }
+.card-img-top:hover {
+  transform: scale(1.05);
+}
 
-  .btn-custom {
-    background: linear-gradient(90deg, #d63384, #e83e8c);
-    color: #fff;
-    padding: 12px 25px;
-    font-weight: 600;
-    border-radius: 30px;
-    transition: background 0.3s ease, transform 0.2s ease;
-    text-transform: uppercase;
-  }
+.contact-title {
+  font-family: 'Georgia', serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #343a40;
+  margin-bottom: 20px;
+}
 
-  .btn-custom:hover {
-    background: linear-gradient(90deg, #e83e8c, #f06292);
-    transform: scale(1.05);
-  }
+.contact-info a:hover {
+  color: #0056b3;
+}
 
-  .discount-badge {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: #e63946;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: bold;
-  }
+.btn-primary:hover {
+  background-color: #003366;
+  transform: scale(1.05);
+}
 
-  .original-price {
-    text-decoration: line-through;
-    color: #888;
-    margin-right: 10px;
-  }
-
-  .discounted-price {
-    color: #e63946;
-    font-weight: bold;
-  }
-
-  .product-scroll {
-    display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    padding-bottom: 10px;
-  }
-
-  .star-rating {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .star {
-    color: #f8d64e;
-    font-size: 1.5rem;
-    margin: 0 2px;
-  }
-
-  .star.filled {
-    color: gold;
-  }
+iframe {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.krye .col-lg-6.text-start h1 {
+font-family: 'Georgia', serif;
+  font-size: 2ren;
+  font-weight: 700;
+  color: #d63384;
+  margin-bottom: 1px;
+  margin-top: 16px;
+  line-height: -17.8;
+  white-space: nowrap;
+  margin-left: -17px;
+  font-size:50px;
+}
+.top-right-image{
+  position: absolute;
+  width: 350px;
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  bottom: 5px;
+  left: 25px;
+  height: 450px;
+}

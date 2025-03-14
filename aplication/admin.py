@@ -8,4 +8,5 @@ admin.site.register(Marka)
 admin.site.register(Makeup)
 admin.site.register(Skincare)
 admin.site.register(Accessor)
-
+admin.site.register(Offer)
+admin.site.register(Video)
