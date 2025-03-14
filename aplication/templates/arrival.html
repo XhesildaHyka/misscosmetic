@@ -2,7 +2,7 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block style %}
-<link rel="stylesheet" href="{% static 'css/about.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
 {% block content %}
 
@@ -35,8 +35,8 @@
             </div>
             <div>
 
-                <p>{{product.price}} ALL</p>
-              <a href="{% url 'detailspage' product.pk %}" class="btn btn-secondary w-100">POROSIT KËTU</a>
+                <p>{{product.actual_price}} ALL</p>
+              <a href="{% url 'detailpage' product.pk %}" class="btn btn-secondary w-100">POROSIT KËTU</a>
 
             </div>
             </div>
