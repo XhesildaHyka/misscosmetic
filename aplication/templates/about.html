@@ -1,0 +1,73 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+{% endblock %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+
+
+<!-- about us card  -->
+<div class="shadow-lg rounded-2xl border-0 overflow-hidden" style="width:90%; height: 80vh; margin: 10px auto 30px auto;">
+    <div class="row g-0 h-100">
+        <div class="col-md-4 h-100">
+            <img src="{% static 'image/3.jpg' %}" class="img-fluid w-100 h-100 object-cover" alt="MissCosmetic Image" style="object-fit: cover;">
+        </div>
+        <div class="col-md-8 d-flex align-items-center justify-content-center bg-light">
+            <div class="card-body p-5">
+                <h5 class="card-title text-4xl font-serif font-extrabold text-pink-600 mb-4" style="font-family: 'Georgia', serif;">MissCosmetic</h5>
+                <p class="card-text text-gray-700 leading-relaxed text-lg" style="font-family: 'Merriweather', serif;">
+                    Discover the beauty within, and let your inner glow shine with our exquisite collection of beauty products. From skincare essentials to luxurious makeup, every item in our range is carefully curated to enhance your natural beauty. With a focus on elegance and timeless appeal, MissCosmetic is dedicated to helping you look and feel your best, every single day. Embrace your individuality and explore the products that will elevate your beauty routine. Beauty is not just skin deep; it's a reflection of confidence, style, and self-expression. 
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Timeline and Origin Section -->
+<div class="timeline-origin" style="background-color: rgb(249, 244, 218); margin-bottom: 40px;">
+    <h2 class="section-title">Our Story</h2>
+    <div class="timeline">
+        <!-- Timeline Items -->
+        <div class="timeline-item">
+            <div class="timeline-year">2010</div>
+            <div class="timeline-description">
+                <h3>Product Launch</h3>
+                <p>Our first beauty product was launched, with a focus on pure ingredients sourced from the finest origins.</p>
+                <i class="timeline-icon fa fa-gift"></i>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-year">2015</div>
+            <div class="timeline-description">
+                <h3>Innovation in Formula</h3>
+                <p>We introduced our unique blend of natural oils, setting a new standard in skincare.</p>
+                <i class="timeline-icon fa fa-cogs"></i>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-year">2020</div>
+            <div class="timeline-description">
+                <h3>Award-Winning</h3>
+                <p>Our product won multiple beauty awards for its effectiveness and luxury packaging.</p>
+                <i class="timeline-icon fa fa-trophy"></i>
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+<div class="origin" style="margin-bottom: 40px;">
+    <h3 class="section-title">The Origin & Craftsmanship</h3>
+    <p>Our products are made with the finest natural ingredients, sourced from sustainable farms. Crafted with care, each product reflects our commitment to quality and luxury.</p>
+    <div class="origin-images">
+        <img src="{% static 'image/1.jpg' %}" alt="Ingredients" class="origin-image">
+        <img src="{% static 'image/2.jpg' %}" alt="Manufacturing" class="origin-image">
+    </div>
+</div>
+
+{% endblock %}

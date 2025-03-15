@@ -1,35 +1,77 @@
 {% load static %}
 
 <!-- Footer -->
-<footer class="text-dark py-4" style="background-color: #fdf2f8;">
+<footer class="text-dark py-5" style="background-color: #fdf2f8;">
     <div class="container">
         <div class="row align-items-center">
             <!-- Logo Section -->
-            <div class="col-12 col-md-3 text-center mb-3 mb-md-0">
-                <img src="{% static 'image/logo3.png' %}" alt="Brand Logo" class="img-fluid rounded-circle shadow" style="width: 120px; height: auto;">
+            <div class="col-12 col-md-3 text-center mb-4 mb-md-0">
+                <img src="{% static 'image/logo3.png' %}" alt="Brand Logo" class="img-fluid rounded-circle shadow-lg" style="width: 130px; height: auto;">
             </div>
 
             <!-- Address Section -->
             <div class="col-12 col-md-5 text-center text-md-start">
-                <h5 class="mb-3 fw-bold"><i class="fa-solid fa-map-marker-alt text-danger"></i> Our Locations</h5>
+                <h5 class="mb-3 fw-bold text-dark"><i class="fa-solid fa-map-marker-alt text-danger"></i> Our Locations</h5>
                 <ul class="list-unstyled">
-                    <li><i class="fa-solid fa-location-dot text-danger"></i> <a href="https://maps.app.goo.gl/dB78hXY1xP1aN97q9" class="text-dark text-decoration-none">Fier</a></li>
-
+                    <li>
+                        <i class="fa-solid fa-location-dot text-danger"></i> 
+                        <a href="https://maps.app.goo.gl/dB78hXY1xP1aN97q9" class="text-dark text-decoration-none position-relative link-hover">
+                            Fier
+                        </a>
+                    </li>
                 </ul>
             </div>
 
             <!-- Social Links Section -->
             <div class="col-12 col-md-4 text-center text-md-start">
-                <h5 class="mb-3 fw-bold"><i class="fa-solid fa-share-nodes text-primary"></i> Connect With Us</h5>
+                <h5 class="mb-3 fw-bold text-dark"><i class="fa-solid fa-share-nodes text-primary"></i> Connect With Us</h5>
                 <div class="d-flex justify-content-center justify-content-md-start gap-3">
-                    <a href="#" target="_blank" class="text-danger fs-4"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" target="_blank" class="text-primary fs-4"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#" target="_blank" class="text-dark fs-4"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="#" target="_blank" class="text-success fs-4"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" target="_blank" class="social-icon bg-danger"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" target="_blank" class="social-icon bg-primary"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" target="_blank" class="social-icon bg-dark"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" target="_blank" class="social-icon bg-success"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
+
         <hr class="my-4 border-dark">
-        <p class="text-center small mb-0 text-dark">© 2025 Firma Hyka. All Rights Reserved.</p>
+        <p class="text-center small mb-0 text-dark">© 2025 <span style="color:#d63384; font-weight:bold;">MissCosmetic</span>. All Rights Reserved.</p>
     </div>
 </footer>
+
+<!-- Additional Styles -->
+<style>
+    .social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 18px;
+        text-decoration: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .social-icon:hover {
+        transform: scale(1.2);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    a.link-hover::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 2px;
+        background: #d63384;
+        transition: width .3s;
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+    }
+
+    a.link-hover:hover::after {
+        width: 100%;
+    }
+</style>

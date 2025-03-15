@@ -6,6 +6,7 @@ urlpatterns = [
     
     path("", views.home, name='home'),
     path("arrival/<int:id>", views.arrival, name="arrivalpage"),
+    path("collection/<int:id>", views.collection, name="collection"),
     path("carousel_images/", views.carousel_images, name="carousel_images"),
     path("detail/<int:id>", views.detail, name="detailpage"),
     path('marka/<int:marka_id>/', views.marka, name='marka'),
@@ -13,6 +14,7 @@ urlpatterns = [
     path('skincare/<int:skincare_id>/', views.skincare, name='skincare'),
     path('accessor/<int:accessor_id>/', views.accessor, name='accessor'),
     path('contact/', views.contact, name='contact'),
+    path('about/', views.about, name='about'),
     path('offer/<int:id>', views.offer, name='offer'),
     path('search/', views.search, name='search'),
     path('video/', views.video, name='video'),

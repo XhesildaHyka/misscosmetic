@@ -219,6 +219,8 @@ body {
   }
 }
 
+
+
 @media screen and (max-width: 425px) {
   .firstimage, .bottom-left-image, .top-right-image {
       width: 200px;
@@ -284,4 +286,124 @@ font-family: 'Georgia', serif;
   bottom: 5px;
   left: 25px;
   height: 450px;
+}
+
+
+/* timeline in home and about us  */
+/* Section Styling */
+.about-product {
+  padding: 50px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Timeline Styling */
+.timeline-origin {
+  margin-bottom: 50px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #d63384; /* Elegant color */
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.timeline-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.timeline-year {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #d63384;
+}
+
+.timeline-description {
+  max-width: 500px;
+}
+
+.timeline-icon {
+  font-size: 2rem;
+  color: #d63384;
+}
+
+.origin {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.origin-images {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.origin-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Product Categories Styling */
+.product-categories {
+  background-color: #fff;
+  padding: 50px 0;
+}
+
+.categories {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+}
+
+.category-card {
+  background-color: #f4f4f4;
+  width: 30%;
+  text-align: center;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.category-card:hover {
+  transform: translateY(-10px);
+}
+
+.category-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.category-info {
+  padding: 20px;
+}
+
+.cta-btn {
+  background-color: #d63384;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.cta-btn:hover {
+  background-color: #a6296c;
 }
