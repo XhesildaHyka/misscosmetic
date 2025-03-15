@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import *  # Make sure to import the models you need
+from .models import *  
+from django.db.models import Q
 
 def home(request):
     carousel_images = CarouselImage.objects.all()  
@@ -11,10 +12,12 @@ def home(request):
     categ = Accessor.objects.all()
     offer = Offer.objects.all()
     videos = Video.objects.all()
+    collection = Collection.objects.all()
     
     context = {
         'carousel_images': carousel_images,
         'arrivals': arrivals,  
+        'collection': collection,
         'detailItem': detailItem,
         'range_5': range(1, 6),
         'categories': categories,
@@ -46,6 +49,19 @@ def arrival(request, id):
         'categ': categ,} 
     return render(request, 'arrival.html', context)
 
+def collection(request, id):
+    categories = Marka.objects.all()
+    cat = Makeup.objects.all()
+    cate = Skincare.objects.all()
+    categ = Accessor.objects.all()
+    collection = Collection.objects.get(pk=id)  
+    koleksion = Product.objects.filter(collection_id=collection)
+    context = {"collection": collection, "koleksion": koleksion,'categories': categories,
+        'cat': cat,
+        'cate': cate,
+        'categ': categ,} 
+    return render(request, 'collection.html', context)
+
 def offer(request, id):
     categories = Marka.objects.all()
     cat = Makeup.objects.all()
@@ -64,7 +80,6 @@ def contact(request):
     cat = Makeup.objects.all()
     cate = Skincare.objects.all()
     categ = Accessor.objects.all()
-
     if request.method == "POST":
        first_name= request.POST["emri"]
        last_name= request.POST["lastname"]
@@ -77,6 +92,16 @@ def contact(request):
         'categ': categ,}
     return render(request, 'contact.html', context)
 
+def about(request):
+    categories = Marka.objects.all()
+    cat = Makeup.objects.all()
+    cate = Skincare.objects.all()
+    categ = Accessor.objects.all()
+    context = {'categories': categories,
+        'cat': cat,
+        'cate': cate,
+        'categ': categ,}
+    return render(request, 'about.html', context)
 
 def detail(request, id):
     categories = Marka.objects.all()
@@ -84,12 +109,13 @@ def detail(request, id):
     cate = Skincare.objects.all()
     categ = Accessor.objects.all()
 
-    detail_item = Product.objects.get(pk=id)  
-    context = {"detailItem": detail_item,'categories': categories,
+    detailItem = Product.objects.get(pk=id)
+    context = {"detailItem": detailItem,'categories': categories,
         'cat': cat,
         'cate': cate,
         'categ': categ,}
     return render(request, 'detail.html', context)
+
 
 def marka(request, marka_id):
     categories = Marka.objects.all()
@@ -149,14 +175,16 @@ def accessor(request, accessor_id):
     return render(request, 'accessor.html', context)
 
 
-
 def search(request):
     search = request.GET.get("search")
     if search:
-        posts = Product.objects.filter(product_title__icontains=search)
+        posts = Product.objects.filter(
+            Q(name__icontains=search) | Q(title__icontains=search)
+        )
     else:
         posts = Product.objects.all()
     return render(request, 'search.html', {"posts": posts})
+
 
 def video(request):
     videos = Video.objects.get()

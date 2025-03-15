@@ -23,9 +23,9 @@
             <div class="col-12 col-md-6 d-flex flex-column justify-content-between p-3">
               <h2 class="card-title text-dark">{{detailItem.title}}</h2>
               <p class="text-muted mb-4">{{detailItem.description}}</p>
-              <p class="text-center"><strong>{{detailItem.price}} ALL</strong></p>
+              <p class="text-center"><strong>{{detailItem.actual_price}} ALL</strong></p>
               <div class="text-center mt-3">
-                <a href="#" class="btn btn-primary btn-lg"> PËRFUNDO POROSINË</a>
+                <a href="{% url 'contact' %}" class="btn btn-primary btn-lg"> PËRFUNDO POROSINË</a>
               </div>
             </div>
           </div>
