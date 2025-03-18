@@ -11,4 +11,5 @@ admin.site.register(Accessor)
 admin.site.register(Offer)
 admin.site.register(Video)
 admin.site.register(Collection)
+admin.site.register(Cart)
 

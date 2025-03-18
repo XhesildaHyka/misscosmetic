@@ -23,7 +23,7 @@
 
 <div class="container">
     <div class="row">
-{% for product in new %}
+{% for product in reja %}
 
         <div class="col-12 col-md-2 col-lg-4 d-flex">
           <div class="card flex-fill">
@@ -37,7 +37,9 @@
             <div>
 
                 <p>{{product.actual_price}} ALL</p>
-              <a href="{% url 'detailpage' product.pk %}" class="btn btn-secondary w-100">POROSIT KËTU</a>
+              <a href="{% url 'detailpage' product.pk %}" class="btn btn-secondary w-100" style="background-color: #d63384; color: white; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;text-decoration:none;">SEE MORE</a>
+              <a href="{% url 'add_to_cart' pk=product.pk %}" style="background-color: green; color: white; text-decoration:none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Add to Cart</a>
+
 
             </div>
             </div>

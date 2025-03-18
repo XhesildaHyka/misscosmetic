@@ -25,7 +25,9 @@
               <p class="text-muted mb-4">{{detailItem.description}}</p>
               <p class="text-center"><strong>{{detailItem.actual_price}} ALL</strong></p>
               <div class="text-center mt-3">
-                <a href="{% url 'contact' %}" class="btn btn-primary btn-lg"> PËRFUNDO POROSINË</a>
+                <a href="{% url 'home' %}" style="background-color: #d63384; color: white; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; text-decoration: none;">BACK TO HOME</a>
+                <a href="{% url 'add_to_cart' detailItem.id %}" style="background-color: green; color: white; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;text-decoration: none;">Add to Cart</a>
+
               </div>
             </div>
           </div>

@@ -83,7 +83,8 @@
               <div>
                 <p class="old-price">Was ${{ product.original_price }}</p>
                 <p class="new-price">Now ${{ product.actual_price }}</p>
-                <a href="{% url 'detailpage' product.pk %}" class="btn w-100">POROSIT KËTU</a>
+                <a href="{% url 'detailpage' product.pk %}" class="btn w-100">SEE MORE</a>
+                <a href="{% url 'add_to_cart' pk=product.pk %}" style="background-color: green; color: white; text-decoration:none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Add to Cart</a>
               </div>
             </div>
           </div>
