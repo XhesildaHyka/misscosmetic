@@ -47,7 +47,7 @@
     <div class="product-info">
       <h2 class="fw-bold">MissCosmetics</h2>
       <p>Skincare products with natural and moisturizing ingredients that help achieve healthy and radiant skin.</p>
-      <a href="#arrivals" class="scroll">Scroll down</a>
+      <a href="#" class="scroll">Scroll down</a>
     </div>
   </div>
 </section>
@@ -78,6 +78,7 @@
           <a href="{% url 'arrivalpage' arrival.pk %}" class="ngjyra btn mt-auto px-4 py-2"
             style="background-color: #d63384; color: white; border-radius: 25px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">SEE
             HERE</a>
+           
         </div>
       </div>
       {% endfor %}
@@ -95,7 +96,7 @@
   <section class="container my-5">
     <h1 class="text-center mb-5"
       style="font-size: 2.5rem; font-weight: 700; color: #4a4a4a; font-family: 'Georgia', serif; letter-spacing: 1px;">
-      Our Exclusive Offers</h1>
+      Our Exclusive Offers:</h1>
 
     <div class="offers-container" style="display: flex; white-space: nowrap; overflow-x: auto; padding-bottom: 20px; padding-left: 20px;">
       {% for ofer in offer %}
@@ -118,6 +119,7 @@
             style="background: linear-gradient(135deg, #d63384, #ff5e62); color: white; border-radius: 30px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 12px 24px; transition: all 0.3s ease-in-out; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
             View Details
           </a>
+         
         </div>
       </div>
       {% endfor %}
@@ -139,9 +141,9 @@
     style="display: flex; overflow-x: hidden; scroll-behavior: smooth; width: 100%; justify-content: flex-start; position: relative;">
     {% for video in videos %}
     <div class="video-item"
-      style="flex-shrink: 0; width: 350px; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin: 0 80px;">
+      style="flex-shrink: 0; width: 350px; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)">
       <!-- Increased margin -->
-      <video controls style="width: 100%; border-radius: 10px;">
+      <video controls autoplay muted loop style="width: 100%; border-radius: 10px;">
         <source src="{{ video.video_file.url }}" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -162,26 +164,25 @@
 
 
 
-
 <!-- our collection -->
+
 <section class="about-product">
-  
   <!-- Product Categories Section -->
   <div class="product-categories">
-      <h2 class="text-center mb-4"
-      style="font-size: 2rem; font-weight: 600; color: #100f10; font-family:Georgia, 'Times New Roman', Times, serif;">Our Collections</h2>
+      <h2 class="text-center mb-4" 
+          style="font-size: 2.2rem; font-weight: 700; color: #100f10; font-family: 'Poppins', sans-serif;">
+          Our Collections
+      </h2>
       <div class="categories">
-          <!-- Category 1 -->
-           {% for collection in collection %}
+          {% for collection in collection %}
               <div class="category-card">
-              <img src="{{ collection.collection_image.url }}" alt="Moisturizer" class="category-image">
-              <div class="category-info">
-                  <h3>{{ collection.collection_title }}</h3>
-                 
-                  <a href="{% url 'collection' collection.pk %}" class="cta-btn">Shop Now</a>
+                  <img src="{{ collection.collection_image.url }}" alt="{{ collection.collection_title }}" class="category-image">
+                  <div class="category-info">
+                      <h3>{{ collection.collection_title }}</h3>
+                      <a href="{% url 'collection' collection.pk %}" class="cta-btn">Shop Now</a>
+                  </div>
               </div>
-          
-        {% endfor %}
+          {% endfor %}
       </div>
   </div>
 </section>

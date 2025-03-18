@@ -1,18 +1,21 @@
 from django.shortcuts import render
 from .models import *  
 from django.db.models import Q
+from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404
 
 def home(request):
     carousel_images = CarouselImage.objects.all()  
     detailItem = Product.objects.all()
-    arrivals = Arrival.objects.all  
+    arrivals = Arrival.objects.all() 
     categories = Marka.objects.all()
     cat = Makeup.objects.all()
     cate = Skincare.objects.all()
     categ = Accessor.objects.all()
     offer = Offer.objects.all()
-    videos = Video.objects.all()
     collection = Collection.objects.all()
+    videos = Video.objects.all()
+   
     
     context = {
         'carousel_images': carousel_images,
@@ -189,3 +192,104 @@ def search(request):
 def video(request):
     videos = Video.objects.get()
     return render(request, 'home.html', {'videos': videos})
+
+
+def add_to_cart(request, pk):
+  
+    item = get_object_or_404(Product, pk=pk)
+    order_item = Cart.objects.get_or_create(item=item, purchased=False)
+    order_qs = Order.objects.filter(ordered=False)
+
+    
+    if order_qs.exists(): 
+        order = order_qs[0]
+
+        if order.orderitems.filter(item=item).exists():
+            order_item[0].quantity += 1
+            order_item[0].save()  
+            return redirect('cart')
+        else:
+            order.orderitems.add(order_item[0])
+            return redirect('cart')
+    else:
+        order = Order()
+        order.save()  
+        order.orderitems.add(order_item[0])
+        return redirect('cart')
+   
+ 
+def cart(request):
+    categories = Marka.objects.all()
+    cat = Makeup.objects.all()
+    cate = Skincare.objects.all()
+    categ = Accessor.objects.all()
+    carts = Cart.objects.filter(purchased=False)
+    orders = Order.objects.filter(ordered=False)
+    if carts.exists() and orders.exists():
+        order = orders[0]
+        context = {
+           'categories': categories,
+            'cat': cat,
+            'cate': cate,
+            'categ': categ,
+            'carts': carts,
+            'order': order
+        }
+        return render(request, 'cart.html', context)
+    else:
+        return redirect('home')
+
+def remove_item(request, pk):
+    item = get_object_or_404(Product, pk=pk)
+    order_qs = Order.objects.filter(ordered=False)
+    if order_qs.exists():
+        order = order_qs[0]
+        if order.orderitems.filter(item=item).exists():
+            order_item = Cart.objects.filter(
+                item=item, purchased=False)[0]
+            order.orderitems.remove(order_item)
+            order_item.delete()
+            return redirect('cart')
+        else:
+            return redirect('cart')
+    else:
+        return redirect('cart')
+
+
+def increase_item(request, pk):
+    item = get_object_or_404(Product, pk=pk)
+    order_qs = Order.objects.filter(ordered=False)
+    if order_qs.exists():
+        order = order_qs[0]
+        if order.orderitems.filter(item=item).exists():
+            order_item = Cart.objects.filter(
+                item=item, purchased=False)[0]
+            if order_item.quantity >= 1:
+                order_item.quantity += 1
+                order_item.save()
+                return redirect('cart')
+        else:
+            return redirect('cart')
+    else:
+        return redirect('cart')
+
+def decrease_item(request, pk):
+    item = get_object_or_404(Product, pk=pk)
+    order_qs = Order.objects.filter(ordered=False)
+    if order_qs.exists():
+        order = order_qs[0]
+        if order.orderitems.filter(item=item).exists():
+            order_item = Cart.objects.filter(
+                item=item, purchased=False)[0]
+            if order_item.quantity > 1:
+                order_item.quantity -= 1
+                order_item.save()
+                return redirect('cart')
+            else:
+                order.orderitems.remove(order_item)
+                order_item.delete()
+                return redirect('cart')
+        else:
+            return redirect('cart')
+    else:
+        return redirect('cart')

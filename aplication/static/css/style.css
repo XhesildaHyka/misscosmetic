@@ -40,9 +40,6 @@ body {
 }
 
 /* Arrivals */
-.card:hover {
-  transform: scale(1.05);
-}
 
 .card-body a {
   transition: background-color 0.3s ease;
@@ -160,7 +157,7 @@ body {
   transition: none; /* Remove any transition */
 }
 
-/* Remove Hover Effect for Scroll */
+
 .scroll:hover {
   background: #d63384; /* Keeps the same background on hover */
   color: white; /* Keeps the same color on hover */
@@ -175,64 +172,6 @@ body {
   }
 }
 
-/* Responsive Fixes */
-@media screen and (max-width: 1024px) {
-  .firstimage, .bottom-left-image, .top-right-image {
-      width: 280px;
-      
-  }
-  .product-info {
-      right: 10px;
-      padding: 20px;
-  }
-  .krye .col-lg-6.text-start h1 {
-    font-family: 'Georgia', serif;
-  font-size: 2ren;
-  font-weight: 700;
-  color: #d63384;
-  margin-bottom: 1px;
-  margin-top: -26px;
-  line-height: -17.8;
-  white-space: nowrap;
-  /* padding-left: 0; */
-  /* padding-right: 20px; */
-  /* margin-right: 9px; */
-  margin-left: -17px;
-  font-size: 50px;
-}
-}
-
-@media screen and (max-width: 768px) {
-  .krye {
-      padding: 30px 10px;
-  }
-  .firstimage, .bottom-left-image, .top-right-image {
-      width: 250px;
-      position: relative;
-      margin-top: 10px;
-  }
-  .product-info {
-      position: relative;
-      padding: 15px;
-      margin-top: 10px;
-      max-width: 90%;
-  }
-}
-
-
-
-@media screen and (max-width: 425px) {
-  .firstimage, .bottom-left-image, .top-right-image {
-      width: 200px;
-      margin: 0 auto;
-  }
-  .product-info {
-      padding: 10px;
-  }
-  .product-info h2 {
-      font-size: 1.4rem;
-  }
-}
 
 /* Button Hover Effect */
 .btn-light:hover {
@@ -287,6 +226,13 @@ font-family: 'Georgia', serif;
   left: 25px;
   height: 450px;
 }
+
+/* vidio */
+.video-item{
+  margin: 0 80px;
+  display: flex;
+}
+
 
 
 /* timeline in home and about us  */
@@ -361,49 +307,153 @@ font-family: 'Georgia', serif;
 /* Product Categories Styling */
 .product-categories {
   background-color: #fff;
-  padding: 50px 0;
+  padding: 60px 20px;
+  text-align: center;
 }
 
 .categories {
   display: flex;
-  justify-content: space-around;
-  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
 }
 
 .category-card {
-  background-color: #f4f4f4;
-  width: 30%;
-  text-align: center;
-  border-radius: 10px;
+  background: linear-gradient(to bottom, #ffffff, #f8f8f8);
+  width: 300px;
+  border-radius: 15px;
   overflow: hidden;
-  transition: transform 0.3s ease-in-out;
+  text-align: center;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .category-card:hover {
-  transform: translateY(-10px);
+  transform: scale(1.05);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .category-image {
   width: 100%;
-  height: 250px;
+  height: 260px;
   object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 
 .category-info {
   padding: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.category-info h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
 }
 
 .cta-btn {
   background-color: #d63384;
   color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 12px 24px;
+  border-radius: 25px;
   text-decoration: none;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 15px;
   display: inline-block;
+  transition: all 0.3s ease-in-out;
 }
 
 .cta-btn:hover {
   background-color: #a6296c;
+  transform: translateY(-3px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
+
+
+
+
+/* Responsive Fixes */
+
+@media screen and (max-width: 1024px) {
+  .firstimage, .bottom-left-image, .top-right-image {
+      width: 280px;
+  }
+  .product-info {
+      right: 10px;
+      padding: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .krye {
+      padding: 30px 10px;
+  }
+  .firstimage, .bottom-left-image, .top-right-image {
+      width: 250px;
+      position: relative;
+      margin-top: 10px;
+  }
+  .product-info {
+      position: relative;
+      padding: 15px;
+      margin-top: 10px;
+      max-width: 90%;
+  }
+}
+
+@media screen and (max-width: 651px) {
+  .krye .col-lg-6.text-start h1 {
+    font-family: 'Georgia', serif;
+    font-size: 2ren;
+    font-weight: 700;
+    color: #d63384;
+    margin-bottom: 1px;
+    margin-top: -16px;
+    line-height: -17.8;
+    white-space: break-spaces;
+    margin-left: -17px;
+    font-size: 50px;
+  }
+  .firstimage{
+      width: 100%;
+      height: auto;
+  }
+  .top-right-image {
+    width: 100%;
+    height: auto;
+    margin-top: -46px;
+  
+  }
+  .bottom-left-image{
+    width: 100%;
+    height: auto;
+    padding-bottom: -3px;
+    margin-bottom: 89px;
+    margin-top: -170px;
+
+  }
+  
+  .product-info {
+      position: static;
+      padding: 15px;
+      margin: 10px auto;
+      max-width: 100%;
+  }
+  .product-info h2 {
+      font-size: 1.2rem;
+  }
+
+ .video-container {
+  margin-top: -2px;
+  margin-left: 0px;
+  height: 50vh;
+  }
+  .categories{
+        width: 329%;
+        margin-left: -252px;
+    }
+  }
+
+

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+{% block content %}
+
+
+
+<body>
+    {% include 'navbar.html' %}
+ 
+
+    <div class="container my-5">
+        <div class="my-5">
+            <h2>Your Cart</h2>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" width="15%">#</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for cart in carts %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ cart.item.name }}</td>
+                    <td>
+                        <a href="{% url 'decrease_item' pk=cart.item.pk %}"><span class="badge badge-light"><i
+                                    class="fas fa-minus" style="color: #c53131; font-size: 16px;"></i></span></a>
+                        {{cart.quantity }}
+                        <!-- Shtimi i numrit te produktit -->
+                        <a class="mr-2" href="{% url 'increase_item' pk=cart.item.pk %}"><span
+                                class="badge badge-light"><i class="fas fa-plus"
+                                    style="color: #c53131; font-size: 16px;"></i></span></a>
+                    </td>
+                    <td>All {{ cart.get_total }}</td>
+                    <td><a href="{% url 'remove_item' pk=cart.item.pk  %}" class="btn btn-danger btn-sm">Remove From
+                            Cart</a> </td>
+                </tr>
+                {% endfor %}
+
+                <tr>
+                    <th scope="row"></th>
+                    <td colspan="2">Total</td>
+                    <td class="fw-bold">All {{ order.get_totals }}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td colspan="4">
+                        <a href="{% url 'home' %}" class="btn btn-warning ">Continue Shopping</a>
+                        <a href="" class=" btn btn-success ">Proceed To Checkout</a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+</body>
+
+
+{% endblock %}

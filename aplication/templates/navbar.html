@@ -73,13 +73,13 @@
             <form id="searchForm" class="d-flex ms-4 gap-3" role="search" action="{% url 'search' %}" method="get">
                 <input class="form-control border rounded-pill" type="search" name="search" placeholder="Search" aria-label="Search" required>
                 <button class="btn btn-light rounded-pill" type="submit">🔍</button>
-                <button class="btn btn-light rounded-pill" type="button">🛒</button>
+                
+                    <a class="nav-link" href="{% url 'cart' %}"> <button class="btn btn-light rounded-pill" type="button">🛒</button></a>
+              
             </form>
-            
         </div>
     </div>
 
-  
 </nav>
   <script>
         document.querySelector('#searchForm button').addEventListener('click', function(event) {
