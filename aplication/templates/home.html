@@ -11,184 +11,240 @@
 
 
 
-
-<!-- MAIN SECTION -->
-<section class="krye">
-  <div class="container">
-    <div class="row align-items-center">
-      <!-- Text Section -->
-      <div class="col-lg-6 text-start">
-        <h1 class="fw-bold">Beauty tailored for you!</h1>
-        <p class="lead fw-bold" style="font-family: Georgia">Shine every day, with style and confidence!</p>
-      </div>
-    </div>
-
-    <div class="image-container">
-      {% if carousel_images %}
-      {% for image in carousel_images %}
-      {% if image.image1 %}
-      <img src="{{ image.image1.url }}" alt="Moisturizer" class="firstimage"
-        class="img-fluid rounded shadow image main-image">
-      {% endif %}
-      {% if image.image %}
-      <img src="{{ image.image.url }}" alt="Additional Image" class="top-right-image">
-      {% endif %}
-      {% if image.image3 %}
-      <img src="{{ image.image3.url }}" alt="Image" class="bottom-left-image ">
-      {% endif %}
-      {% endfor %}
-      {% else %}
-      <p>No carousel images available</p>
-      {% endif %}
-    </div>
+<body>
 
 
-    <!-- Product Info -->
-    <div class="product-info">
-      <h2 class="fw-bold">MissCosmetics</h2>
-      <p>Skincare products with natural and moisturizing ingredients that help achieve healthy and radiant skin.</p>
-      <a href="#" class="scroll">Scroll down</a>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-<!-- NEW ARRIVALS -->
-<main>
-  <section class="container my-5">
-    <h1 class="text-center mb-4"
-      style="font-size: 2rem; font-weight: 600; color: #100f10; font-family:Georgia, 'Times New Roman', Times, serif;">
-      Latest:</h1>
-
-    <div id="photo-gallery" class="d-flex flex-row justify-content-start photo-container" 
-         style="overflow-x: auto; white-space: nowrap; position: relative;">
-      <!-- NEW ARRIVALS COLUMN -->
-
-      <!-- FOTO NGA DATABAZA -->
-      {% for arrival in arrivals %}
-      <div class="card mx-3 mb-4 d-inline-block" style="min-width: 250px; height: 100%; transition: transform 0.3s ease;">
-        <img src="{{ arrival.arrival_image.url }}" class="card-img-top" alt="..."
-          style="height: 300px; object-fit: cover; width: 100%; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-        <div class="card-body text-center d-flex flex-column justify-content-end flex-grow-1"
-          style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 0 0 10px 10px;">
-          <h5 class="card-title" style="font-size: 1.2rem; font-weight: 500;">{{ arrival.arrival_title }}</h5>
-          <a href="{% url 'arrivalpage' arrival.pk %}" class="ngjyra btn mt-auto px-4 py-2"
-            style="background-color: #d63384; color: white; border-radius: 25px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">SEE
-            HERE</a>
-           
+  <!-- MAIN SECTION -->
+  <section class="krye">
+    <div class="container">
+      <div class="row align-items-center">
+        <!-- Text Section -->
+        <div class="col-lg-6 text-start">
+          <h1 class="fw-bold">Beauty tailored for you!</h1>
+          <p class="lead fw-bold" style="font-family: Georgia">Shine every day, with style and confidence!</p>
         </div>
       </div>
-      {% endfor %}
+
+      <div class="image-container">
+        {% if carousel_images %}
+        {% for image in carousel_images %}
+        {% if image.image1 %}
+        <img src="{{ image.image1.url }}" alt="Moisturizer" class="firstimage"
+          class="img-fluid rounded shadow image main-image">
+        {% endif %}
+        {% if image.image %}
+        <img src="{{ image.image.url }}" alt="Additional Image" class="top-right-image">
+        {% endif %}
+        {% if image.image3 %}
+        <img src="{{ image.image3.url }}" alt="Image" class="bottom-left-image ">
+        {% endif %}
+        {% endfor %}
+        {% else %}
+        <p>No carousel images available</p>
+        {% endif %}
+      </div>
+
+
+      <!-- Product Info -->
+      <div class="product-info">
+        <h2 class="fw-bold">MissCosmetics</h2>
+        <p>Skincare products with natural and moisturizing ingredients that help achieve healthy and radiant skin.</p>
+        <a href="#" class="scroll">Scroll down</a>
+      </div>
     </div>
-    
-    
   </section>
-</main>
 
 
 
 
-<!-- Offer Section -->
-<main>
-  <section class="container my-5">
-    <h1 class="text-center mb-5"
-      style="font-size: 2.5rem; font-weight: 700; color: #4a4a4a; font-family: 'Georgia', serif; letter-spacing: 1px;">
-      Our Exclusive Offers:</h1>
 
-    <div class="offers-container" style="display: flex; white-space: nowrap; overflow-x: auto; padding-bottom: 20px; padding-left: 20px;">
-      {% for ofer in offer %}
-      <div class="offer-card card" style="min-width: 250px; height: 100%; border: none; border-radius: 15px; transition: transform 0.3s ease; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
-        <div class="image-container" style="position: relative; height: 300px; overflow: hidden; border-radius: 15px;">
-          <img src="{{ ofer.offer_image.url }}" class="card-img-top" alt="Product Image"
-            style="object-fit: cover; width: 100%; height: 100%; transition: transform 0.3s ease; border-radius: 15px;">
-          <!-- Discount Badge in the top-left corner -->
-          <div class="discount-badge"
-            style="position: absolute; top: 15px; left: 15px; background-color:#FF0000; color: white; font-size: 1.5rem; padding: 5px 15px; border-radius: 25px; font-weight: 700; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); font-family: 'Georgia', serif;">
-            UP TO -{{ ofer.discount }}%
+  <!-- NEW ARRIVALS -->
+  <main style=" margin-bottom: 50px;">
+    <section class="container my-5">
+      <h1 class="text-center mb-4"
+        style="font-size: 2rem; font-weight: 600; color: #100f10; font-family:Georgia, 'Times New Roman', Times, serif;">
+        Latest:</h1>
+
+      <div id="photo-gallery" class="d-flex flex-row justify-content-start photo-container"
+        style="overflow-x: auto; white-space: nowrap; position: relative;">
+        <!-- NEW ARRIVALS COLUMN -->
+
+        <!-- FOTO NGA DATABAZA -->
+        {% for arrival in arrivals %}
+        <div class="card mx-3 mb-4 d-inline-block"
+          style="min-width: 250px; height: 100%; transition: transform 0.3s ease;">
+          <img src="{{ arrival.arrival_image.url }}" class="card-img-top" alt="..."
+            style="height: 300px; object-fit: cover; width: 100%; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <div class="card-body text-center d-flex flex-column justify-content-end flex-grow-1"
+            style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 0 0 10px 10px;">
+            <h5 class="card-title" style="font-size: 1.2rem; font-weight: 500;">{{ arrival.arrival_title }}</h5>
+            <a href="{% url 'arrivalpage' arrival.pk %}" class="ngjyra btn mt-auto px-4 py-2"
+              style="background-color: #d63384; color: white; border-radius: 25px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">SEE
+              HERE</a>
+
           </div>
         </div>
-        <div class="card-body text-center d-flex flex-column justify-content-end flex-grow-1"
-          style="padding: 2rem; background-color: #f9f9f9; border-radius: 0 0 15px 15px;">
-          <h5 class="card-title" style="font-size: 1.3rem; font-weight: 600; color: #333; font-family: 'Georgia', serif;">{{ ofer.offer_title }}</h5>
+        {% endfor %}
+      </div>
 
-          <!-- "SHIKO KËTU" Button with Elegant Animation -->
-          <a href="{% url 'offer' ofer.pk %}" class="ngjyra btn mt-auto px-4 py-2"
-            style="background: linear-gradient(135deg, #d63384, #ff5e62); color: white; border-radius: 30px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 12px 24px; transition: all 0.3s ease-in-out; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
-            View Details
-          </a>
-         
+
+    </section>
+  </main>
+
+
+  <!-- Carousel -->
+  <div style="margin-top: -185px;margin-bottom: -90px; height: 75vh;" class="carousel">
+    <div class="Timeline__Container">
+      <div class="Timeline__ListItem">
+        <!-- Slide 1: Face Blushes -->
+        <div class="Timeline__Item" id="blushes">
+          <img src="{% static 'image/blush.jpeg' %}" alt="Face Blushes">
+          <div style="margin-left: 50px;">
+            <h2>Face Blushes</h2>
+            <p>"Add a touch of color and radiance to your cheeks with our stunning collection of blushes. From soft,
+              natural hues to bold, statement shades, our finely milled powders and creamy formulas blend seamlessly for
+              a flawless finish. Whether you prefer a dewy glow or a matte flush, find the perfect blush to enhance your
+              beauty and complete your look."</p>
+          </div>
         </div>
+        <!-- Slide 2: Lipsticks -->
+        <div class="Timeline__Item" id="lipsticks">
+          <img src="{% static 'image/lip.jpeg' %}" alt="Lipsticks">
+          <div style="margin-left: 50px;">
+            <h2>Lipsticks</h2>
+            <p>"Elevate your look with our irresistible collection of lipsticks. From bold mattes to luminous satins and
+              hydrating creams, our shades are designed to complement every style and mood. Whether you’re going for a
+              classic red, a soft nude, or a daring pop of color, our long-lasting, richly pigmented formulas will keep
+              your lips looking flawless all day. Find your perfect match and make a statement with every smile!"</p>
+          </div>
+        </div>
+        <!-- Slide 3: Accessories -->
+        <div class="Timeline__Item" id="accessories">
+          <img src="{% static 'image/furc.jpeg' %}" alt="Accessories">
+          <div style="margin-left: 50px;">
+            <h2>Accessories</h2>
+            <p>"Complete your beauty routine with our premium makeup brushes. Designed for precision and flawless
+              application, our collection includes everything from soft blending brushes to detailed sculpting tools.
+              Whether you’re perfecting your contour, creating a seamless eyeshadow look, or applying a radiant blush,
+              our high-quality brushes ensure a smooth, professional finish every time. Elevate your makeup game with
+              the right tools!"</p>
+          </div>
+        </div>
+      </div>
+      <div class="Timeline__Nav">
+        <button class="Timeline__NavItem is-selected" data-index="0">Face Blushes</button>
+        <button class="Timeline__NavItem" data-index="1">Lipsticks</button>
+        <button class="Timeline__NavItem" data-index="2">Accessories</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Offer Section -->
+  <main style=" margin-top: 150px;">
+    <section class="container my-5">
+      <h1 class="text-center mb-5"
+        style="font-size: 2.5rem; font-weight: 700; color: #4a4a4a; font-family: 'Georgia', serif; letter-spacing: 1px;">
+        Our Exclusive Offers:</h1>
+
+      <div class="offers-container"
+        style="display: flex; white-space: nowrap; overflow-x: auto; padding-bottom: 20px; padding-left: 20px;">
+        {% for ofer in offer %}
+        <div class="offer-card card"
+          style="min-width: 250px; height: 100%; border: none; border-radius: 15px; transition: transform 0.3s ease; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+          <div class="image-container"
+            style="position: relative; height: 300px; overflow: hidden; border-radius: 15px;">
+            <img src="{{ ofer.offer_image.url }}" class="card-img-top" alt="Product Image"
+              style="object-fit: cover; width: 100%; height: 100%; transition: transform 0.3s ease; border-radius: 15px;">
+            <!-- Discount Badge in the top-left corner -->
+            <div class="discount-badge"
+              style="position: absolute; top: 15px; left: 15px; background-color:#FF0000; color: white; font-size: 1.5rem; padding: 5px 15px; border-radius: 25px; font-weight: 700; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); font-family: 'Georgia', serif;">
+              UP TO -{{ ofer.discount }}%
+            </div>
+          </div>
+          <div class="card-body text-center d-flex flex-column justify-content-end flex-grow-1"
+            style="padding: 2rem; background-color: #f9f9f9; border-radius: 0 0 15px 15px;">
+            <h5 class="card-title"
+              style="font-size: 1.3rem; font-weight: 600; color: #333; font-family: 'Georgia', serif;">
+              {{ofer.offer_title }}</h5>
+
+            <!-- "SHIKO KËTU" Button with Elegant Animation -->
+            <a href="{% url 'offer' ofer.pk %}" class="ngjyra btn mt-auto px-4 py-2"
+              style="background: linear-gradient(135deg, #d63384, #ff5e62); color: white; border-radius: 30px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 12px 24px; transition: all 0.3s ease-in-out; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+              View Details
+            </a>
+
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+
+
+
+  <!-- vidio tips -->
+  <div
+    style="position: relative; padding: 40px 0; background-color: #f8f9fa; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h2 class="text-center mb-4"
+      style="font-size: 2rem; font-weight: 600; color: #100f10; font-family:Georgia, 'Times New Roman', Times, serif;">
+      Glow & Glam:
+    </h2>
+
+    <div class="video-container" id="video-gallery"
+      style="display: flex; overflow-x: hidden; scroll-behavior: smooth; width: 100%; justify-content: flex-start; position: relative;">
+      {% for video in videos %}
+      <div class="video-item"
+        style="flex-shrink: 0; width: 350px; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)">
+        <!-- Increased margin -->
+        <video controls autoplay muted loop style="width: 100%; border-radius: 10px;">
+          <source src="{{ video.video_file.url }}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </div>
       {% endfor %}
     </div>
-  </section>
-</main>
 
+    <span class="scroll-btn left" onclick="scrollVideos(-1)"
+      style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); font-size: 2rem; color: #d63384; cursor: pointer; transition: color 0.3s;">
+      &#60;
+    </span>
 
-
-<!-- vidio tips -->
-<div
-  style="position: relative; padding: 40px 0; background-color: #f8f9fa; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-  <h2 class="text-center mb-4"
-    style="font-size: 2rem; font-weight: 600; color: #100f10; font-family:Georgia, 'Times New Roman', Times, serif;">
-    Glow & Glam:
-  </h2>
-
-  <div class="video-container" id="video-gallery"
-    style="display: flex; overflow-x: hidden; scroll-behavior: smooth; width: 100%; justify-content: flex-start; position: relative;">
-    {% for video in videos %}
-    <div class="video-item"
-      style="flex-shrink: 0; width: 350px; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)">
-      <!-- Increased margin -->
-      <video controls autoplay muted loop style="width: 100%; border-radius: 10px;">
-        <source src="{{ video.video_file.url }}" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-    {% endfor %}
+    <span class="scroll-btn right" onclick="scrollVideos(1)"
+      style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); font-size: 2rem; color: #d63384; cursor: pointer; transition: color 0.3s;">
+      &#62;
+    </span>
   </div>
 
-  <span class="scroll-btn left" onclick="scrollVideos(-1)"
-    style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); font-size: 2rem; color: #d63384; cursor: pointer; transition: color 0.3s;">
-    &#60;
-  </span>
-
-  <span class="scroll-btn right" onclick="scrollVideos(1)"
-    style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); font-size: 2rem; color: #d63384; cursor: pointer; transition: color 0.3s;">
-    &#62;
-  </span>
-</div>
 
 
+  <!-- our collection -->
 
-<!-- our collection -->
-
-<section class="about-product">
-  <!-- Product Categories Section -->
-  <div class="product-categories">
-      <h2 class="text-center mb-4" 
-          style="font-size: 2.2rem; font-weight: 700; color: #100f10; font-family: 'Poppins', sans-serif;">
-          Our Collections
+  <section class="about-product">
+    <!-- Product Categories Section -->
+    <div class="product-categories">
+      <h2 class="text-center mb-4"
+        style="font-size: 2.2rem; font-weight: 700; color: #100f10; font-family: 'Poppins', sans-serif;">
+        Our Collections
       </h2>
       <div class="categories">
-          {% for collection in collection %}
-              <div class="category-card">
-                  <img src="{{ collection.collection_image.url }}" alt="{{ collection.collection_title }}" class="category-image">
-                  <div class="category-info">
-                      <h3>{{ collection.collection_title }}</h3>
-                      <a href="{% url 'collection' collection.pk %}" class="cta-btn">Shop Now</a>
-                  </div>
-              </div>
-          {% endfor %}
+        {% for collection in collection %}
+        <div class="category-card">
+          <img src="{{ collection.collection_image.url }}" alt="{{ collection.collection_title }}"
+            class="category-image">
+          <div class="category-info">
+            <h3>{{ collection.collection_title }}</h3>
+            <a href="{% url 'collection' collection.pk %}" class="cta-btn">Shop Now</a>
+          </div>
+        </div>
+        {% endfor %}
       </div>
-  </div>
-</section>
+    </div>
+  </section>
 
 
-
+</body>
 <script>
   document.querySelector('#searchForm button').addEventListener('click', function (event) {
     const query = document.querySelector('input[name="search"]').value; // Get the search query
@@ -199,14 +255,32 @@
 <script>
   function scrollVideos(direction) {
     const container = document.getElementById('video-gallery');
-    const scrollAmount = 350; 
+    const scrollAmount = 350;
     container.scrollBy({
-      left: direction * scrollAmount, 
-      behavior: 'smooth' 
+      left: direction * scrollAmount,
+      behavior: 'smooth'
     });
   }
 </script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const items = document.querySelectorAll(".Timeline__Item");
+    const buttons = document.querySelectorAll(".Timeline__NavItem");
+    const list = document.querySelector(".Timeline__ListItem");
+
+    buttons.forEach((button, index) => {
+      button.addEventListener("click", function () {
+        // Remove active class from all buttons
+        buttons.forEach(btn => btn.classList.remove("is-selected"));
+        button.classList.add("is-selected");
+
+        // Slide movement
+        list.style.transform = `translateX(-${index * 100}%)`;
+      });
+    });
+  });
+</script>
 
 
 {% endblock %}
