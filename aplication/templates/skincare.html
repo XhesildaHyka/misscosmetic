@@ -18,11 +18,11 @@
         <img src="{% if mark.image %}{{ mark.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" class="card-img-top d-block mx-auto" alt="Image" style="max-height: 250px; object-fit: cover; border-radius: 10px;">
 
         <div class="card-body" style="background-color: #fff9f9;">
-          <h5 class="card-title text-truncate" style="color: #ff8ab6; font-size: 1.2rem; font-family: 'Georgia', serif; font-weight: bold;">{{ mark.title }}</h5>
-          <p class="card-text" style="color: #d98cd5; font-weight: bold; font-size: 1.1rem;">{{ mark.price }} ALL</p>
+          <h5 class="card-title text-truncate" style="color: #ff8ab6; font-size: 1.2rem; font-family: 'Georgia', serif; font-weight: bold;">{{ mark.name }}</h5>
+          <p class="card-text" style="color: #d98cd5; font-weight: bold; font-size: 1.1rem;">{{ mark.actual_price }} ALL</p>
           <p class="card-text" style="color: #777; font-size: 1rem; font-style: italic; line-height: 1.5;">{{ mark.description }}</p>
-          <a href="{% url 'detailpage' mark.pk %}" class="btn btn-light text-dark font-weight-bold w-100" style="background-color: #f8d1e8; transition: background-color 0.3s ease; border-radius: 30px; font-size: 1.1rem;">SEE MORE</a>
-          <a href="{% url 'add_to_cart' pk=mark.pk %}"style="background-color: green; color: white; text-decoration:none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Add to Cart</a>
+          <!-- <a href="{% url 'detailpage' mark.pk %}" class="btn btn-light text-dark font-weight-bold w-100" style="background-color: #f8d1e8; transition: background-color 0.3s ease; border-radius: 30px; font-size: 1.1rem;">SEE MORE</a> -->
+          <a href="{% url 'add_to_cart' pk=mark.pk %}"class="btn btn-light text-dark font-weight-bold w-100" style="background-color: #f8d1e8; transition: background-color 0.3s ease; border-radius: 30px; font-size: 1.1rem;">Add to Cart</a>
         </div>
       </div>
     </div>

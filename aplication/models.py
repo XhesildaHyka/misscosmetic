@@ -65,7 +65,6 @@ class Video(models.Model):
 class Product(models.Model):
   
     name = models.CharField(max_length=255)
-    title = models.CharField(max_length=450)
     description = models.TextField(max_length=500, null=True, blank=True)
     actual_price = models.DecimalField(max_digits=10, decimal_places=2)
     original_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)

@@ -16,7 +16,6 @@ def home(request):
     collection = Collection.objects.all()
     videos = Video.objects.all()
    
-    
     context = {
         'carousel_images': carousel_images,
         'arrivals': arrivals,  

@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -30,8 +30,9 @@ body {
   height: 40px;
   width: auto;
 }
+
 .nav-link {
-  color: white!important; 
+  color: white !important;
   font-weight: 500;
 }
 
@@ -40,14 +41,31 @@ body {
 }
 
 /* Arrivals */
+.card {
+  position: relative; 
+  z-index: 2; 
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%; 
+}
+
+.card-body a {
+  position: relative;
+  z-index: 5; 
+}
 
 .card-body a {
   transition: background-color 0.3s ease;
 }
-
+/* 
 .card-body a:hover {
   background-color: #d63384;
-}
+} */
 
 /* Krye Section */
 .krye {
@@ -89,7 +107,8 @@ body {
   bottom: 105px;
   left: 111px;
 }
-.top-right-image{
+
+.top-right-image {
   position: absolute;
   width: 350px;
   border-radius: 15px;
@@ -132,16 +151,16 @@ body {
 }
 
 .krye .col-lg-6.text-start h1 {
-      font-family: 'Georgia', serif;
-    font-size: 2ren;
-    font-weight: 700;
-    color: #d63384;
-    margin-bottom: 1px;
-    margin-top: -26px;
-    line-height: -17.8;
-    white-space: nowrap;
-    margin-left: -17px;
-    font-size: x-large;
+  font-family: 'Georgia', serif;
+  font-size: 2ren;
+  font-weight: 700;
+  color: #d63384;
+  margin-bottom: 1px;
+  margin-top: -26px;
+  line-height: -17.8;
+  white-space: nowrap;
+  margin-left: -17px;
+  font-size: x-large;
 }
 
 /* Scroll Down Styling */
@@ -154,21 +173,27 @@ body {
   border-radius: 30px;
   font-weight: bold;
   letter-spacing: 1px;
-  transition: none; /* Remove any transition */
+  transition: none;
+  /* Remove any transition */
 }
 
 
 .scroll:hover {
-  background: #d63384; /* Keeps the same background on hover */
-  color: white; /* Keeps the same color on hover */
+  background: #d63384;
+  /* Keeps the same background on hover */
+  color: white;
+  /* Keeps the same color on hover */
 }
 
 @keyframes bounce {
-  0%, 100% {
-      transform: translateY(0);
+
+  0%,
+  100% {
+    transform: translateY(0);
   }
+
   50% {
-      transform: translateY(-10px);
+    transform: translateY(-10px);
   }
 }
 
@@ -205,8 +230,9 @@ iframe {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .krye .col-lg-6.text-start h1 {
-font-family: 'Georgia', serif;
+  font-family: 'Georgia', serif;
   font-size: 2ren;
   font-weight: 700;
   color: #d63384;
@@ -215,9 +241,10 @@ font-family: 'Georgia', serif;
   line-height: -17.8;
   white-space: nowrap;
   margin-left: -17px;
-  font-size:50px;
+  font-size: 50px;
 }
-.top-right-image{
+
+.top-right-image {
   position: absolute;
   width: 350px;
   border-radius: 15px;
@@ -228,7 +255,7 @@ font-family: 'Georgia', serif;
 }
 
 /* vidio */
-.video-item{
+.video-item {
   margin: 0 80px;
   display: flex;
 }
@@ -253,7 +280,8 @@ font-family: 'Georgia', serif;
   font-weight: bold;
   text-align: center;
   margin-bottom: 30px;
-  color: #d63384; /* Elegant color */
+  color: #d63384;
+  /* Elegant color */
 }
 
 .timeline {
@@ -373,33 +401,132 @@ font-family: 'Georgia', serif;
 
 
 
+/* Carouseli */
+
+.carousel {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 50vh;
+}
+
+.Timeline__Container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 50px auto;
+
+}
+
+.Timeline__ListItem {
+    display: flex;
+    transition: transform 0.7s ease-in-out;
+    width: 300%;
+}
+
+.Timeline__Item {
+  width: 100%;
+  flex: 0 0 100%;
+  padding: -5px;
+  margin-bottom: -163px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  margin-top: 80px;
+}
+
+
+.Timeline__Item img {
+    width: 17%;
+    height:54%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.Timeline__Item p {
+    width: 50%;
+    padding-left: 20px;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.Timeline__Item h2 {
+    font-size: 24px;
+    color: #d63384;
+    margin-top: 15px;
+}
+
+.Timeline__Nav {
+  display: flex;
+  justify-content: center;
+  position: relative; 
+  top: -110px; 
+  z-index: 10; 
+}
+
+.Timeline__NavItem {
+  margin: 0 10px;
+  padding: 12px 24px;
+  border: none;
+  background-color: #d63384;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+
+.Timeline__NavItem:hover {
+    background-color: #b0256a;
+    transform: scale(1.1);
+}
+
+.Timeline__NavItem.is-selected {
+    background-color: #b0256a;
+}
+
+
+
 
 /* Responsive Fixes */
 
 @media screen and (max-width: 1024px) {
-  .firstimage, .bottom-left-image, .top-right-image {
-      width: 280px;
+
+  .firstimage,
+  .bottom-left-image,
+  .top-right-image {
+    width: 280px;
   }
+
   .product-info {
-      right: 10px;
-      padding: 20px;
+    right: 10px;
+    padding: 20px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .krye {
-      padding: 30px 10px;
+    padding: 30px 10px;
   }
-  .firstimage, .bottom-left-image, .top-right-image {
-      width: 250px;
-      position: relative;
-      margin-top: 10px;
+
+  .firstimage,
+  .bottom-left-image,
+  .top-right-image {
+    width: 250px;
+    position: relative;
+    margin-top: 10px;
   }
+
   .product-info {
-      position: relative;
-      padding: 15px;
-      margin-top: 10px;
-      max-width: 90%;
+    position: relative;
+    padding: 15px;
+    margin-top: 10px;
+    max-width: 90%;
   }
 }
 
@@ -416,17 +543,20 @@ font-family: 'Georgia', serif;
     margin-left: -17px;
     font-size: 50px;
   }
-  .firstimage{
-      width: 100%;
-      height: auto;
+
+  .firstimage {
+    width: 100%;
+    height: auto;
   }
+
   .top-right-image {
     width: 100%;
     height: auto;
     margin-top: -46px;
-  
+
   }
-  .bottom-left-image{
+
+  .bottom-left-image {
     width: 100%;
     height: auto;
     padding-bottom: -3px;
@@ -434,26 +564,26 @@ font-family: 'Georgia', serif;
     margin-top: -170px;
 
   }
-  
+
   .product-info {
-      position: static;
-      padding: 15px;
-      margin: 10px auto;
-      max-width: 100%;
+    position: static;
+    padding: 15px;
+    margin: 10px auto;
+    max-width: 100%;
   }
+
   .product-info h2 {
-      font-size: 1.2rem;
+    font-size: 1.2rem;
   }
 
- .video-container {
-  margin-top: -2px;
-  margin-left: 0px;
-  height: 50vh;
-  }
-  .categories{
-        width: 329%;
-        margin-left: -252px;
-    }
+  .video-container {
+    margin-top: -2px;
+    margin-left: 0px;
+    height: 50vh;
   }
 
-
+  .categories {
+    width: 329%;
+    margin-left: -252px;
+  }
+}
