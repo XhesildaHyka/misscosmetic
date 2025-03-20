@@ -9,17 +9,12 @@
 <style>
   img {
     width: 100%;
-    height: auto;
+    height: 250px;
     object-fit: cover;
   }
 
   .product-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
   }
 
   .old-price {
@@ -74,17 +69,19 @@
       {% for product in skonto %}
         <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
           <div class="card product-card flex-fill" style="max-width: 350px;">
-            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.title }}">
+            <img src="{{ product.image.url }}" class="card-img" alt="{{ product.title }}">
             <div class="card-body d-flex flex-column justify-content-between">
               <div>
                 <h5 class="card-title">{{ product.name }}</h5>
                 <p>{{ product.description }}
               </div>
               <div>
+                <div style="display: flex; justify-content: space-between;">
                 <p class="old-price">Was ${{ product.original_price }}</p>
                 <p class="new-price">Now ${{ product.actual_price }}</p>
-                <a href="{% url 'detailpage' product.pk %}" class="btn w-100">SEE MORE</a>
-                <a href="{% url 'add_to_cart' pk=product.pk %}" style="background-color: green; color: white; text-decoration:none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Add to Cart</a>
+              </div>
+                <!-- <a href="{% url 'detailpage' product.pk %}" class="btn w-100">SEE MORE</a> -->
+                <a href="{% url 'add_to_cart' pk=product.pk %}" class="btn w-100">Add to Cart</a>
               </div>
             </div>
           </div>
