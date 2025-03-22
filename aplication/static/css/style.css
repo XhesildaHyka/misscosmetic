@@ -402,93 +402,102 @@ iframe {
 
 
 /* Carouseli */
-
-.carousel {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 50vh;
+/* .carousel {
+  font-family: 'Arial', sans-serif;
+  margin: 0 auto;
+  padding: 0;
+  height: 55vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
 }
 
 .Timeline__Container {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 50px auto;
-
+  overflow: hidden;
+  position: relative;
+  width: 85%;
+  max-width: 900px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  padding: 30px;
 }
 
 .Timeline__ListItem {
-    display: flex;
-    transition: transform 0.7s ease-in-out;
-    width: 300%;
+  display: flex;
+  transition: transform 0.7s ease-in-out;
+  width: 300%;
 }
 
 .Timeline__Item {
   width: 100%;
   flex: 0 0 100%;
-  padding: -5px;
-  margin-bottom: -163px;
-  position: relative;
-  overflow: hidden;
   display: flex;
-  margin-top: 80px;
+  align-items: center;
+  padding: 20px;
+  gap: 25px;
 }
-
 
 .Timeline__Item img {
-    width: 17%;
-    height:54%;
-    object-fit: cover;
-    border-radius: 8px;
-    transition: transform 0.3s ease-in-out;
+  width: 22%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
 }
 
-.Timeline__Item p {
-    width: 50%;
-    padding-left: 20px;
-    font-size: 16px;
-    color: #333;
-    line-height: 1.5;
-    margin: 0;
+.Timeline__Item img:hover {
+  transform: scale(1.05);
 }
 
-.Timeline__Item h2 {
-    font-size: 24px;
-    color: #d63384;
-    margin-top: 15px;
+.Timeline__Text {
+  width: 70%;
+}
+
+.Timeline__Text h2 {
+  font-size: 26px;
+  color: #d63384;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.Timeline__Text p {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.6;
 }
 
 .Timeline__Nav {
   display: flex;
   justify-content: center;
-  position: relative; 
-  top: -110px; 
-  z-index: 10; 
+  margin-top: 25px;
 }
 
 .Timeline__NavItem {
   margin: 0 10px;
-  padding: 12px 24px;
+  padding: 14px 26px;
   border: none;
-  background-color: #d63384;
+  background: linear-gradient(135deg, #d63384, #b0256a);
   color: white;
   font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
   border-radius: 30px;
-  transition: background-color 0.3s, transform 0.3s;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 10px rgba(214, 51, 132, 0.3);
 }
 
-
 .Timeline__NavItem:hover {
-    background-color: #b0256a;
-    transform: scale(1.1);
+  background: linear-gradient(135deg, #b0256a, #8d1f55);
+  transform: scale(1.1);
 }
 
 .Timeline__NavItem.is-selected {
-    background-color: #b0256a;
-}
+  background: #8d1f55;
+  box-shadow: 0px 4px 15px rgba(214, 51, 132, 0.5);
+} */
 
 
 
