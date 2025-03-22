@@ -15,11 +15,15 @@ def home(request):
     offer = Offer.objects.all()
     collection = Collection.objects.all()
     videos = Video.objects.all()
+    bestseller = Product.objects.filter(is_bestseller=True)
+
+   
    
     context = {
         'carousel_images': carousel_images,
-        'arrivals': arrivals,  
+        'arrivals': arrivals, 
         'collection': collection,
+        'bestseller': bestseller,
         'detailItem': detailItem,
         'range_5': range(1, 6),
         'categories': categories,
@@ -28,6 +32,9 @@ def home(request):
         'categ': categ,
         'offer': offer,
         'videos': videos,
+   
+        
+
       
     }
     return render(request, 'home.html', context)
@@ -50,6 +57,8 @@ def arrival(request, id):
         'cate': cate,
         'categ': categ,} 
     return render(request, 'arrival.html', context)
+
+
 
 def collection(request, id):
     categories = Marka.objects.all()

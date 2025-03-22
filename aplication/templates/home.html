@@ -8,11 +8,24 @@
 {% block content %}
 {% include 'navbar.html' %}
 
+<style>
+  /* Star rating container */
+.star-rating {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 1.5rem; 
+  z-index: 2; 
+}
 
+.star {
+  color: #ffd700; 
+  margin-right: 2px; /* Add space between stars */
+}
 
+</style>
 
 <body>
-
 
   <!-- MAIN SECTION -->
   <section class="krye">
@@ -55,90 +68,174 @@
   </section>
 
 
-
-
-
   <!-- NEW ARRIVALS -->
-  <main style=" margin-bottom: 50px;">
+  <main style="margin-bottom: 50px;">
     <section class="container my-5">
       <h1 class="text-center mb-4"
-        style="font-size: 2rem; font-weight: 600; color: #100f10; font-family:Georgia, 'Times New Roman', Times, serif;">
-        Latest:</h1>
+        style="font-size: 2rem; font-weight: 600; color: #100f10; font-family: Georgia, 'Times New Roman', Times, serif;">
+        Latest:
+      </h1>
 
-      <div id="photo-gallery" class="d-flex flex-row justify-content-start photo-container"
-        style="overflow-x: auto; white-space: nowrap; position: relative;">
-        <!-- NEW ARRIVALS COLUMN -->
-
-        <!-- FOTO NGA DATABAZA -->
+      <!-- Scrollable Container for Latest Arrivals -->
+      <div class="arrivals-container" id="arrival-gallery"
+        style="display: flex; overflow-x: auto; scroll-behavior: smooth; width: 100%; justify-content: flex-start; position: relative; padding-bottom: 20px;">
         {% for arrival in arrivals %}
-        <div class="card mx-3 mb-4 d-inline-block"
-          style="min-width: 250px; height: 100%; transition: transform 0.3s ease;">
+        <div class="arrival-item card mx-3" style="flex-shrink: 0; width: 250px; transition: transform 0.3s ease;">
           <img src="{{ arrival.arrival_image.url }}" class="card-img-top" alt="..."
-            style="height: 300px; object-fit: cover; width: 100%; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-          <div class="card-body text-center d-flex flex-column justify-content-end flex-grow-1"
+            style="height: 300px; object-fit: cover; width: 100%; border-radius: 10px;">
+          <div class="card-body text-center"
             style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 0 0 10px 10px;">
             <h5 class="card-title" style="font-size: 1.2rem; font-weight: 500;">{{ arrival.arrival_title }}</h5>
-            <a href="{% url 'arrivalpage' arrival.pk %}" class="ngjyra btn mt-auto px-4 py-2"
-              style="background-color: #d63384; color: white; border-radius: 25px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">SEE
-              HERE</a>
-
+            <a href="{% url 'arrivalpage' arrival.pk %}" class="btn mt-auto px-4 py-2"
+              style="background-color: #d63384; color: white; border-radius: 25px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+              SEE HERE
+            </a>
           </div>
         </div>
         {% endfor %}
       </div>
 
+      <!-- Custom Navigation Buttons -->
+      <span class="scroll-btn left" onclick="scrollArrivals(-1)"
+        style="position: absolute; top: 150%; left: 10px; transform: translateY(-50%); font-size: 2rem; color: #d63384; cursor: pointer; transition: color 0.3s;">
+        &#60;
+      </span>
 
+      <span class="scroll-btn right" onclick="scrollArrivals(1)"
+        style="position: absolute; top: 150%; right: 10px; transform: translateY(-50%); font-size: 2rem; color: #d63384; cursor: pointer; transition: color 0.3s;">
+        &#62;
+      </span>
     </section>
   </main>
 
 
+
+
+  
+<!-- bestselling -->
+<main style="margin-bottom: 50px;">
+  <section class="container my-5">
+    <h1 class="text-center mb-4"
+      style="font-size: 2rem; font-weight: 600; color: #100f10; font-family: Georgia, 'Times New Roman', Times, serif;">
+      Bestselling products:
+    </h1>
+
+    <div class="best-container" style="display: flex; overflow-x: auto; scroll-behavior: smooth; width: 100%; justify-content: flex-start; position: relative; padding-bottom: 20px;">
+      {% for product in bestseller %}
+        <div class="arrival-item card mx-3" style="flex-shrink: 0; width: 250px; transition: transform 0.3s ease;">
+          
+          <!-- Product Image -->
+          <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}"
+            style="height: 300px; object-fit: cover; width: 100%; border-radius: 10px;">
+          
+          <!-- Static Star Rating (Decoration Only) -->
+          <div class="star-rating" style="position: absolute; top: 10px; left: 10px;">
+            <span class="star" style="color: #ffd700;">&#9733;</span>
+            <span class="star" style="color: #ffd700;">&#9733;</span>
+            <span class="star" style="color: #ffd700;">&#9733;</span>
+            <span class="star" style="color: #ffd700;">&#9733;</span>
+            <span class="star" style="color: #ffd700;">&#9733;</span>
+          </div>
+
+          <!-- Product Info -->
+          <div class="card-body text-center" style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 0 0 10px 10px;">
+            <h5 class="card-title" style="font-size: 1.2rem; font-weight: 500;">{{ product.name }}</h5>
+            <a href="{% url 'detailpage' product.pk %}" class="btn mt-auto px-4 py-2"
+              style="background-color: #d63384; color: white; border-radius: 25px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+              SEE HERE
+            </a>
+          </div>
+        </div>
+      {% empty %}
+        <p>No bestselling products available.</p>
+      {% endfor %}
+    </div>
+  </section>
+</main>
+
+
+
+
+
+
+
   <!-- Carousel -->
-  <div style="margin-top:-60px;margin-bottom: 150px;height:450px" class="carousel">
-    <div class="Timeline__Container">
-      <div class="Timeline__ListItem">
-        <!-- Slide 1: Face Blushes -->
-        <div class="Timeline__Item" id="blushes">
-          <img src="{% static 'image/blush.jpeg' %}" alt="Face Blushes">
-          <div>
-            <h2>Face Blushes</h2>
-            <p style="margin-left: -110px;padding-bottom:260px; white-space: break-spaces;display: flex; align-items: center; ">"Add a touch of color and radiance to your cheeks with our stunning collection of blushes. From soft, natural hues to bold,statement shades, our finely milled 
-powders and creamy formulas blend seamlessly for a flawless finish. Whether you
-prefer a dewy glow or a matte flush, find the perfect blush to enhance your beauty and complete your look."</p>
+  <main>
+    <h1 class="text-center mb-4"
+      style="font-size: 2rem; font-weight: 600; color: #100f10; font-family:Georgia, 'Times New Roman', Times, serif;">
+    </h1>
+    <div id="carousel-container"
+      style="width: 80%; max-width: 600px; margin: 50px auto; padding: 20px; border-radius: 12px; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); text-align: center; background-color: white; position: relative; overflow: hidden;">
+
+      <!-- Slides Wrapper -->
+      <div style="display: flex; width: 100%; overflow: hidden; justify-content: center; align-items: center;">
+
+        <!-- Inner Slides Container -->
+        <div id="carousel-slides" style="display: flex; transition: transform 0.5s ease-in-out; width: 300%;">
+
+          <!-- Slide 1: Face Blushes -->
+          <div
+            style="width: 100%; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <img src="{% static 'image/blush.jpeg' %}" alt="Face Blushes"
+              style="width: 150px; height: 150px; border-radius: 10px; box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);">
+            <h2 style="color: #d63384; font-size: 22px;">Face Blushes</h2>
+            <p style="color: #444; font-size: 15px; max-width: 80%; line-height: 1.6;">"Add a touch of color and
+              radiance to your cheeks with our stunning collection of blushes. From soft, natural hues to bold,
+              statement shades, find the perfect blush to enhance your beauty."</p>
           </div>
-        </div>
-        <!-- Slide 2: Lipsticks -->
-        <div class="Timeline__Item" id="lipsticks">
-          <img src="{% static 'image/lip.jpeg' %}" alt="Lipsticks">
-          <div >
-            <h2>Lipsticks</h2>
-            <p style="margin-left: -110px;padding-bottom:260px; white-space: break-spaces;display: flex; align-items: center; ">"Elevate your look with our irresistible collection of lipsticks. From bold mattes to luminous satins and
-              hydrating creams, our shades are designed to complement every style and mood. Whether you’re going for a
-              classic red, a soft nude, or a daring pop of color, our long-lasting, richly pigmented formulas will keep
-              your lips looking flawless all day. Find your perfect match and make a statement with every smile!"</p>
+
+          <!-- Slide 2: Lipsticks -->
+          <div
+            style="width: 100%; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <img src="{% static 'image/lip.jpeg' %}" alt="Lipsticks"
+              style="width: 150px; height: 150px; border-radius: 10px; box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);">
+            <h2 style="color: #d63384; font-size: 22px;">Lipsticks</h2>
+            <p style="color: #444; font-size: 15px; max-width: 80%; line-height: 1.6;">"Elevate your look with our
+              irresistible collection of lipsticks. Whether you’re going for a classic red, a soft nude, or a daring pop
+              of color, our long-lasting formulas will keep you flawless all day."</p>
           </div>
-        </div>
-        <!-- Slide 3: Accessories -->
-        <div class="Timeline__Item" id="accessories">
-          <img src="{% static 'image/furc.jpeg' %}" alt="Accessories">
-          <div style="margin-left: 50px;">
-            <h2>Accessories</h2>
-            <p>"Complete your beauty routine with our premium makeup brushes. Designed for precision and flawless
-              application, our collection includes everything from soft blending brushes to detailed sculpting tools.
-              Whether you’re perfecting your contour, creating a seamless eyeshadow look, or applying a radiant blush,
-              our high-quality brushes ensure a smooth, professional finish every time. Elevate your makeup game with
-              the right tools!"</p>
+
+          <!-- Slide 3: Accessories -->
+          <div
+            style="width: 100%; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <img src="{% static 'image/furc.jpeg' %}" alt="Accessories"
+              style="width: 150px; height: 150px; border-radius: 10px; box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);">
+            <h2 style="color: #d63384; font-size: 22px;">Accessories</h2>
+            <p style="color: #444; font-size: 15px; max-width: 80%; line-height: 1.6;">"Complete your beauty routine
+              with our premium makeup brushes, designed for precision and flawless application. Achieve a smooth,
+              professional finish every time!"</p>
           </div>
+
         </div>
       </div>
-      <div class="Timeline__Nav">
-        <button class="Timeline__NavItem is-selected" data-index="0">Face Blushes</button>
-        <button class="Timeline__NavItem" data-index="1">Lipsticks</button>
-        <button class="Timeline__NavItem" data-index="2">Accessories</button>
+
+      <!-- Custom Navigation Buttons (Instead of ❮ ❯) -->
+      <div class="Timeline__Nav" style="display: flex; justify-content: center; margin-top: 15px;">
+        <button class="Timeline__NavItem is-selected" data-index="0" onclick="goToSlide(0)"
+          style="margin: 0 10px; padding: 10px 20px; border: none; background-color: #d63384; color: white; border-radius: 20px; cursor: pointer;">Face
+          Blushes</button>
+        <button class="Timeline__NavItem" data-index="1" onclick="goToSlide(1)"
+          style="margin: 0 10px; padding: 10px 20px; border: none; background-color: #d63384; color: white; border-radius: 20px; cursor: pointer;">Lipsticks</button>
+        <button class="Timeline__NavItem" data-index="2" onclick="goToSlide(2)"
+          style="margin: 0 10px; padding: 10px 20px; border: none; background-color: #d63384; color: white; border-radius: 20px; cursor: pointer;">Accessories</button>
       </div>
 
     </div>
 
-  </div>
+    <!-- JavaScript for Timeline Navigation -->
+    <script>
+      function goToSlide(index) {
+        document.getElementById('carousel-slides').style.transform = `translateX(${-index * 100}%)`;
+
+        // Update button active state
+        document.querySelectorAll(".Timeline__NavItem").forEach((btn, i) => {
+          btn.classList.toggle("is-selected", i === index);
+        });
+      }
+    </script>
+
+  </main>
+
 
   <!-- Offer Section -->
   <main style=" margin-top: 150px;">
@@ -182,39 +279,48 @@ prefer a dewy glow or a matte flush, find the perfect blush to enhance your beau
   </main>
 
 
+  <!-- Video Tips -->
+  <main>
 
-  <!-- vidio tips -->
-  <div
-    style="position: relative; padding: 40px 0; background-color: #f8f9fa; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-    <h2 class="text-center mb-4"
-      style="font-size: 2rem; font-weight: 600; color: #100f10; font-family:Georgia, 'Times New Roman', Times, serif;">
-      Glow & Glam:
-    </h2>
+    <div
+      style="position: relative; padding: 40px 0; background-color: #f8f9fa; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+      <h2 class="text-center mb-4"
+        style="font-size: 2rem; font-weight: 600; color: #100f10; font-family: Georgia, 'Times New Roman', Times, serif;">
+        Glow & Glam:
+      </h2>
 
-    <div class="video-container" id="video-gallery"
-      style="display: flex; overflow-x: hidden; scroll-behavior: smooth; width: 100%; justify-content: flex-start; position: relative;">
-      {% for video in videos %}
-      <div class="video-item"
-        style="flex-shrink: 0; width: 350px; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)">
-        <!-- Increased margin -->
-        <video controls autoplay muted loop style="width: 100%; border-radius: 10px;">
-          <source src="{{ video.video_file.url }}" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
+      <!-- Video Carousel -->
+      <div id="videoTipsCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          {% for video in videos %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <div class="d-flex justify-content-center">
+              <div class="video-item"
+                style="flex-shrink: 0; width: 350px; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <video controls autoplay muted loop style="width: 100%; border-radius: 10px;">
+                  <source src="{{ video.video_file.url }}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- Navigation Buttons -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#videoTipsCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"
+            style="background-color: #d63384; padding: 15px; border-radius: 50%;"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#videoTipsCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"
+            style="background-color: #d63384; padding: 15px; border-radius: 50%;"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
-      {% endfor %}
     </div>
-
-    <span class="scroll-btn left" onclick="scrollVideos(-1)"
-      style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); font-size: 2rem; color: #d63384; cursor: pointer; transition: color 0.3s;">
-      &#60;
-    </span>
-
-    <span class="scroll-btn right" onclick="scrollVideos(1)"
-      style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); font-size: 2rem; color: #d63384; cursor: pointer; transition: color 0.3s;">
-      &#62;
-    </span>
-  </div>
+  </main>
 
 
 
@@ -242,8 +348,9 @@ prefer a dewy glow or a matte flush, find the perfect blush to enhance your beau
     </div>
   </section>
 
-
 </body>
+
+
 <script>
   document.querySelector('#searchForm button').addEventListener('click', function (event) {
     const query = document.querySelector('input[name="search"]').value; // Get the search query
@@ -252,34 +359,15 @@ prefer a dewy glow or a matte flush, find the perfect blush to enhance your beau
 </script>
 
 <script>
-  function scrollVideos(direction) {
-    const container = document.getElementById('video-gallery');
-    const scrollAmount = 350;
+  // Function to handle scrolling for arrivals
+  function scrollArrivals(direction) {
+    const container = document.getElementById('arrival-gallery');
+    const scrollAmount = 300; // You can adjust this value for how far you want to scroll
     container.scrollBy({
       left: direction * scrollAmount,
       behavior: 'smooth'
     });
   }
 </script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const items = document.querySelectorAll(".Timeline__Item");
-    const buttons = document.querySelectorAll(".Timeline__NavItem");
-    const list = document.querySelector(".Timeline__ListItem");
-
-    buttons.forEach((button, index) => {
-      button.addEventListener("click", function () {
-        // Remove active class from all buttons
-        buttons.forEach(btn => btn.classList.remove("is-selected"));
-        button.classList.add("is-selected");
-
-        // Slide movement
-        list.style.transform = `translateX(-${index * 100}%)`;
-      });
-    });
-  });
-</script>
-
 
 {% endblock %}
