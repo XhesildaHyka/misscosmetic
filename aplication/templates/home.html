@@ -10,19 +10,19 @@
 
 <style>
   /* Star rating container */
-.star-rating {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 1.5rem; 
-  z-index: 2; 
-}
+  .star-rating {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 1.5rem;
+    z-index: 2;
+  }
 
-.star {
-  color: #ffd700; 
-  margin-right: 2px; /* Add space between stars */
-}
-
+  .star {
+    color: #ffd700;
+    margin-right: 2px;
+    /* Add space between stars */
+  }
 </style>
 
 <body>
@@ -111,58 +111,71 @@
 
 
 
-  
-<!-- bestselling -->
-<main style="margin-bottom: 50px;">
-  <section class="container my-5">
-    <h1 class="text-center mb-4"
-      style="font-size: 2rem; font-weight: 600; color: #100f10; font-family: Georgia, 'Times New Roman', Times, serif;">
-      Bestselling products:
-    </h1>
 
-    <div class="best-container" style="display: flex; overflow-x: auto; scroll-behavior: smooth; width: 100%; justify-content: flex-start; position: relative; padding-bottom: 20px;">
-      {% for product in bestseller %}
-        <div class="arrival-item card mx-3" style="flex-shrink: 0; width: 250px; transition: transform 0.3s ease;">
-          
+
+  <!-- Bestselling -->
+  <main style="margin-bottom: 50px; position: relative;">
+    <section class="container my-5">
+      <h1 class="text-center mb-3"
+        style="font-size: 2rem; font-weight: 600; color: #100f10; font-family: Georgia, 'Times New Roman', Times, serif;">
+        Bestselling Products
+      </h1>
+
+      <div class="best-container" id="bestseller-scroll"
+        style="display: flex; overflow-x: auto; scroll-behavior: smooth; width: 100%; justify-content: flex-start; padding-bottom: 20px; position: relative;">
+
+        {% for product in bestseller %}
+        <div class="arrival-item card mx-3"
+          style="flex-shrink: 0; width: 250px; transition: transform 0.3s ease, box-shadow 0.3s ease; border-radius: 15px; overflow: hidden; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+
           <!-- Product Image -->
           <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}"
-            style="height: 300px; object-fit: cover; width: 100%; border-radius: 10px;">
-          
-          <!-- Static Star Rating (Decoration Only) -->
-          <div class="star-rating" style="position: absolute; top: 10px; left: 10px;">
-            <span class="star" style="color: #ffd700;">&#9733;</span>
-            <span class="star" style="color: #ffd700;">&#9733;</span>
-            <span class="star" style="color: #ffd700;">&#9733;</span>
-            <span class="star" style="color: #ffd700;">&#9733;</span>
-            <span class="star" style="color: #ffd700;">&#9733;</span>
-          </div>
+            style="height: 250px; object-fit: cover; width: 100%;">
 
           <!-- Product Info -->
-          <div class="card-body text-center" style="padding: 1.5rem; background-color: #f8f9fa; border-radius: 0 0 10px 10px;">
-            <h5 class="card-title" style="font-size: 1.2rem; font-weight: 500;">{{ product.name }}</h5>
+          <div class="card-body text-center" style="padding: 1.5rem; background-color: #f8f9fa;">
+            <h5 class="card-title" style="font-size: 1.2rem; font-weight: 500; margin-bottom: 8px;">{{ product.name }}
+            </h5>
+
+            <!-- Star Rating Below Product Name -->
+            <div class="mb-3">
+              <span class="star" style="color: #ffd700; font-size: 1.2rem;">&#9733;</span>
+              <span class="star" style="color: #ffd700; font-size: 1.2rem;">&#9733;</span>
+              <span class="star" style="color: #ffd700; font-size: 1.2rem;">&#9733;</span>
+              <span class="star" style="color: #ffd700; font-size: 1.2rem;">&#9733;</span>
+              <span class="star" style="color: #ffd700; font-size: 1.2rem;">&#9733;</span>
+            </div>
+
             <a href="{% url 'detailpage' product.pk %}" class="btn mt-auto px-4 py-2"
               style="background-color: #d63384; color: white; border-radius: 25px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
-              SEE HERE
+              See Here
             </a>
           </div>
         </div>
-      {% empty %}
-        <p>No bestselling products available.</p>
-      {% endfor %}
-    </div>
-  </section>
-</main>
+        {% empty %}
+        <p class="text-center">No bestselling products available.</p>
+        {% endfor %}
+      </div>
 
+      <!-- Custom Navigation Buttons -->
+      <span class="scroll-btn left" onclick="scrollBestsellers(-1)"
+        style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); font-size: 2rem; color: #d63384; cursor: pointer; transition: color 0.3s;">
+        &#60;
+      </span>
 
-
-
+      <span class="scroll-btn right" onclick="scrollBestsellers(1)"
+        style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); font-size: 2rem; color: #d63384; cursor: pointer; transition: color 0.3s;">
+        &#62;
+      </span>
+    </section>
+  </main>
 
 
 
   <!-- Carousel -->
   <main>
     <h1 class="text-center mb-4"
-      style="font-size: 2rem; font-weight: 600; color: #100f10; font-family:Georgia, 'Times New Roman', Times, serif;">
+      style="font-size: 2rem; font-weight: 600; color: #100f10; font-family:Georgia, 'Times New Roman', Times, serif;">Our Curated Beauty Selection
     </h1>
     <div id="carousel-container"
       style="width: 80%; max-width: 600px; margin: 50px auto; padding: 20px; border-radius: 12px; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); text-align: center; background-color: white; position: relative; overflow: hidden;">
@@ -238,45 +251,62 @@
 
 
   <!-- Offer Section -->
-  <main style=" margin-top: 150px;">
+  <main style="margin-top: 150px; position: relative; background-color: #f7f7f7; padding-top: 50px;">
     <section class="container my-5">
       <h1 class="text-center mb-5"
-        style="font-size: 2.5rem; font-weight: 700; color: #4a4a4a; font-family: 'Georgia', serif; letter-spacing: 1px;">
-        Our Exclusive Offers:</h1>
-
-      <div class="offers-container"
-        style="display: flex; white-space: nowrap; overflow-x: auto; padding-bottom: 20px; padding-left: 20px;">
+        style="font-size: 2.5rem; font-weight: 700; color: #4a4a4a; font-family: 'Georgia', serif; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+        Our Exclusive Offers:
+      </h1>
+  
+      <div class="offers-container" id="offers-scroll"
+        style="display: flex; white-space: nowrap; overflow-x: auto; padding-bottom: 20px; padding-left: 20px; position: relative; gap: 20px;">
+        
         {% for ofer in offer %}
-        <div class="offer-card card"
-          style="min-width: 250px; height: 100%; border: none; border-radius: 15px; transition: transform 0.3s ease; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
-          <div class="image-container"
-            style="position: relative; height: 300px; overflow: hidden; border-radius: 15px;">
-            <img src="{{ ofer.offer_image.url }}" class="card-img-top" alt="Product Image"
-              style="object-fit: cover; width: 100%; height: 100%; transition: transform 0.3s ease; border-radius: 15px;">
-            <!-- Discount Badge in the top-left corner -->
-            <div class="discount-badge"
-              style="position: absolute; top: 15px; left: 15px; background-color:#FF0000; color: white; font-size: 1.5rem; padding: 5px 15px; border-radius: 25px; font-weight: 700; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); font-family: 'Georgia', serif;">
-              UP TO -{{ ofer.discount }}%
+          <div class="offer-card card"
+            style="min-width: 250px; height: 100%; border: none; border-radius: 15px; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); background-color: #ffffff;">
+            
+            <div class="image-container"
+              style="position: relative; height: 300px; overflow: hidden; border-radius: 15px;">
+              <img src="{{ ofer.offer_image.url }}" class="card-img-top" alt="Product Image"
+                style="object-fit: cover; width: 100%; height: 100%; transition: transform 0.3s ease; border-radius: 15px;">
+              
+              <!-- Discount Badge -->
+              <div class="discount-badge"
+                style="position: absolute; top: 15px; left: 15px; background-color:#FF0000; color: white; font-size: 1.5rem; padding: 5px 15px; border-radius: 25px; font-weight: 700; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); font-family: 'Georgia', serif;">
+                UP TO -{{ ofer.discount }}%
+              </div>
+            </div>
+            
+            <div class="card-body text-center d-flex flex-column justify-content-end flex-grow-1"
+              style="padding: 2rem; background-color: #f9f9f9; border-radius: 0 0 15px 15px;">
+              <h5 class="card-title"
+                style="font-size: 1.3rem; font-weight: 600; color: #333; font-family: 'Georgia', serif; text-transform: uppercase;">
+                {{ ofer.offer_title }}
+              </h5>
+  
+              <!-- "View Details" Button -->
+              <a href="{% url 'offer' ofer.pk %}" class="ngjyra btn mt-auto px-4 py-2"
+                style="background: linear-gradient(135deg, #d63384, #ff5e62); color: white; border-radius: 30px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 12px 24px; transition: all 0.3s ease-in-out; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+                View Details
+              </a>
             </div>
           </div>
-          <div class="card-body text-center d-flex flex-column justify-content-end flex-grow-1"
-            style="padding: 2rem; background-color: #f9f9f9; border-radius: 0 0 15px 15px;">
-            <h5 class="card-title"
-              style="font-size: 1.3rem; font-weight: 600; color: #333; font-family: 'Georgia', serif;">
-              {{ofer.offer_title }}</h5>
-
-            <!-- "SHIKO KËTU" Button with Elegant Animation -->
-            <a href="{% url 'offer' ofer.pk %}" class="ngjyra btn mt-auto px-4 py-2"
-              style="background: linear-gradient(135deg, #d63384, #ff5e62); color: white; border-radius: 30px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; padding: 12px 24px; transition: all 0.3s ease-in-out; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
-              View Details
-            </a>
-
-          </div>
-        </div>
         {% endfor %}
       </div>
+  
+      <!-- Custom Navigation Buttons -->
+      <span class="scroll-btn left" onclick="scrollOffers(-1)"
+        style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); font-size: 2.5rem; color: #d63384; cursor: pointer; transition: color 0.3s, transform 0.3s; padding: 10px; border-radius: 50%; background-color: rgba(0, 0, 0, 0.1);">
+        &#60;
+      </span>
+  
+      <span class="scroll-btn right" onclick="scrollOffers(1)"
+        style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); font-size: 2.5rem; color: #d63384; cursor: pointer; transition: color 0.3s, transform 0.3s; padding: 10px; border-radius: 50%; background-color: rgba(0, 0, 0, 0.1);">
+        &#62;
+      </span>
     </section>
   </main>
+
 
 
   <!-- Video Tips -->
@@ -330,8 +360,8 @@
     <!-- Product Categories Section -->
     <div class="product-categories">
       <h2 class="text-center mb-4"
-        style="font-size: 2.2rem; font-weight: 700; color: #100f10; font-family: 'Poppins', sans-serif;">
-        Our Collections
+      style="font-size: 2rem; font-weight: 600; color: #100f10; font-family:Georgia, 'Times New Roman', Times, serif;">
+        Discover Our Signature Collection:
       </h2>
       <div class="categories">
         {% for collection in collection %}
@@ -350,7 +380,7 @@
 
 </body>
 
-
+<!-- Javascrip for searchbutotn -->
 <script>
   document.querySelector('#searchForm button').addEventListener('click', function (event) {
     const query = document.querySelector('input[name="search"]').value; // Get the search query
@@ -358,8 +388,8 @@
   });
 </script>
 
+<!-- javascript to handle scrolling for arrivals -->
 <script>
-  // Function to handle scrolling for arrivals
   function scrollArrivals(direction) {
     const container = document.getElementById('arrival-gallery');
     const scrollAmount = 300; // You can adjust this value for how far you want to scroll
@@ -370,4 +400,21 @@
   }
 </script>
 
+<!-- JavaScript for Scrolling Bestsellers -->
+<script>
+  function scrollBestsellers(direction) {
+    const container = document.getElementById("bestseller-scroll");
+    const scrollAmount = 300; // Adjust scrolling speed
+    container.scrollBy({ left: direction * scrollAmount, behavior: "smooth" });
+  }
+</script>
+
+<!-- JavaScript for Scrolling Offers -->
+<script>
+  function scrollOffers(direction) {
+    const container = document.getElementById("offers-scroll");
+    const scrollAmount = 300; // Adjust scrolling speed
+    container.scrollBy({ left: direction * scrollAmount, behavior: "smooth" });
+  }
+</script>
 {% endblock %}
