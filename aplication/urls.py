@@ -6,6 +6,7 @@ urlpatterns = [
     
     path("", views.home, name='home'),
     path("arrival/<int:id>", views.arrival, name="arrivalpage"),
+    path("terms/", views.terms, name="terms"),
     # path("bestseller/<int:id>", views.bestseller, name="bestseller"),
     path("collection/<int:id>", views.collection, name="collection"),
     path("carousel_images/", views.carousel_images, name="carousel_images"),

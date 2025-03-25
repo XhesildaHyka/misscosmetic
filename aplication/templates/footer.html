@@ -10,7 +10,7 @@
             </div>
 
             <!-- Address Section -->
-            <div class="col-12 col-md-5 text-center text-md-start">
+            <div class="col-12 col-md-3 text-center text-md-start">
                 <h5 class="mb-3 fw-bold text-dark"><i class="fa-solid fa-map-marker-alt text-danger"></i> Our Locations</h5>
                 <ul class="list-unstyled">
                     <li>
@@ -22,8 +22,33 @@
                 </ul>
             </div>
 
-            <!-- Social Links Section -->
-            <div class="col-12 col-md-4 text-center text-md-start">
+            <!-- Quick Links Section -->
+            <div class="col-12 col-md-2 text-center text-md-start">
+                <h5 class="mb-3 fw-bold text-dark"><i class="fa-solid fa-link text-success"></i> Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'home' %}" class="text-dark text-decoration-none">Home</a></li>
+                    <li><a href="{% url 'home' %}" class="text-dark text-decoration-none">Shop</a></li>
+                    <li><a href="{% url 'contact' %}" class="text-dark text-decoration-none">Contact</a></li>
+                    <li><a href="{% url 'terms' %}" class="text-dark text-decoration-none">FAQs</a></li>
+                </ul>
+            </div>
+
+            <!-- Customer Service Section -->
+            <div class="col-12 col-md-2 text-center text-md-start">
+                <h5 class="mb-3 fw-bold text-dark"><i class="fa-solid fa-headset text-info"></i> Customer Service</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'terms' %}" class="text-dark text-decoration-none">Help Center</a></li>
+                    <li><a href="{% url 'terms' %}" class="text-dark text-decoration-none">Live Chat</a></li>
+                    <li><a href="{% url 'terms' %}" class="text-dark text-decoration-none">Return Policy</a></li>
+                    <li><a href="{% url 'terms' %}" class="text-dark text-decoration-none">Terms & Conditions</a></li>
+                </ul>
+            </div>
+
+       
+        <!-- Connect & Subscribe Section (In the same line) -->
+        <div class="row mt-4 d-flex align-items-center">
+            <!-- Connect With Us -->
+            <div class="col-12 col-md-6 text-center text-md-start">
                 <h5 class="mb-3 fw-bold text-dark"><i class="fa-solid fa-share-nodes text-primary"></i> Connect With Us</h5>
                 <div class="d-flex justify-content-center justify-content-md-start gap-3">
                     <a href="#" target="_blank" class="social-icon bg-danger"><i class="fa-brands fa-instagram"></i></a>
@@ -32,9 +57,27 @@
                     <a href="#" target="_blank" class="social-icon bg-success"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
+
+            <!-- Subscribe to Our Newsletter -->
+            <div class="col-12 col-md-6 text-center text-md-start mt-4 mt-md-0">
+                <h5 class="mb-3 fw-bold text-dark"><i class="fa-solid fa-envelope text-primary"></i> Subscribe to Our Newsletter</h5>
+                <form action="#" method="POST" class="d-flex justify-content-center justify-content-md-start">
+                    <input type="email" class="form-control me-2" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-danger">Subscribe</button>
+                </form>
+            </div>
         </div>
 
         <hr class="my-4 border-dark">
+
+        <div class="row">
+            <!-- Privacy Policy and Terms of Use -->
+            <div class="col-12 text-center mt-3">
+                <a href="{% url 'terms' %}" class="text-dark text-decoration-none me-3">Privacy Policy</a>
+                <a href="{% url 'terms' %}" class="text-dark text-decoration-none">Terms of Use</a>
+            </div>
+        </div>
+
         <p class="text-center small mb-0 text-dark">© 2025 <span style="color:#d63384; font-weight:bold;">MissCosmetic</span>. All Rights Reserved.</p>
     </div>
 </footer>
