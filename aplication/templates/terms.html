@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+{% block content %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f9f9f9;
+        padding-top: 0px;
+    }
+
+    .container {
+
+        margin:0;
+        padding: 0;
+
+    }
+
+    .container h1,
+    .container h2,
+    .container h3 {
+        color: #d63384;
+    }
+
+
+    h1,
+    h2,
+    h3 {
+        color: #d63384;
+    }
+
+    h2 {
+        margin-top: 30px;
+        border-bottom: 2px solid #d63384;
+        padding-bottom: 10px;
+    }
+
+    p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .section {
+        margin-bottom: 40px;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    ul li {
+        padding-left: 20px;
+        text-indent: -10px;
+    }
+
+    .faq-item {
+        margin-bottom: 20px;
+    }
+
+    .faq-item h4 {
+        font-weight: bold;
+        cursor: pointer;
+        color: #d63384;
+    }
+
+    .faq-answer {
+        display: none;
+        padding-left: 20px;
+        margin-top: 10px;
+    }
+
+    .faq-answer p {
+        font-size: 0.95rem;
+    }
+</style>
+
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        <header>
+            <h1>Terms & Conditions, Privacy Policy, and FAQs</h1>
+            <p>Welcome to our website. Below, you will find the terms of service, privacy policy, and frequently asked
+                questions (FAQ) to help you navigate our services.</p>
+        </header>
+
+        <!-- Terms and Conditions Section -->
+        <div class="section" id="terms">
+            <h2><i class="fas fa-file-contract"></i> Terms of Service</h2>
+            <p>By using our website, you agree to comply with and be bound by the following terms and conditions:</p>
+            <ul>
+                <li><strong>Acceptance of Terms:</strong> By accessing and using this website, you accept and agree to
+                    be bound by these Terms of Service.</li>
+                <li><strong>Use of Services:</strong> You agree to use our services only for lawful purposes.</li>
+                <li><strong>Account Responsibility:</strong> You are responsible for maintaining the confidentiality of
+                    your account details.</li>
+                <li><strong>Termination:</strong> We reserve the right to terminate or suspend your account if you
+                    violate any of our terms.</li>
+            </ul>
+        </div>
+
+        <!-- Privacy Policy Section -->
+        <div class="section" id="privacy-policy">
+            <h2><i class="fas fa-shield-alt"></i> Privacy Policy</h2>
+            <p>Your privacy is very important to us. This privacy policy outlines how we collect, use, and protect your
+                information:</p>
+            <ul>
+                <li><strong>Information Collection:</strong> We collect personal information when you register on our
+                    website or use our services.</li>
+                <li><strong>Data Use:</strong> We use the data to improve your experience, process transactions, and
+                    communicate with you.</li>
+                <li><strong>Data Protection:</strong> We implement security measures to safeguard your personal
+                    information from unauthorized access.</li>
+                <li><strong>Cookies:</strong> Our website uses cookies to enhance user experience and analyze website
+                    traffic.</li>
+            </ul>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="section" id="faq">
+            <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions (FAQ)</h2>
+            <div class="faq-item">
+                <h4 onclick="toggleAnswer('faq1')">1. What is the return policy?</h4>
+                <div id="faq1" class="faq-answer">
+                    <p>You can return most products within 30 days of purchase for a full refund or exchange.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <h4 onclick="toggleAnswer('faq2')">2. How can I track my order?</h4>
+                <div id="faq2" class="faq-answer">
+                    <p>You will receive a tracking number via email once your order has shipped, allowing you to track
+                        it through our courier's website.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <h4 onclick="toggleAnswer('faq3')">3. Can I cancel my order after placing it?</h4>
+                <div id="faq3" class="faq-answer">
+                    <p>Orders can only be canceled within 24 hours of placement. Please contact our customer service as
+                        soon as possible.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <h4 onclick="toggleAnswer('faq4')">4. Do you offer international shipping?</h4>
+                <div id="faq4" class="faq-answer">
+                    <p>Yes, we offer international shipping to select countries. Please refer to our shipping policy for
+                        more details.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleAnswer(faqId) {
+            var answer = document.getElementById(faqId);
+            answer.style.display = (answer.style.display === "block") ? "none" : "block";
+        }
+    </script>
+
+</body>
+
+{% endblock %}

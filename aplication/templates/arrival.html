@@ -3,46 +3,130 @@
 {% load static %}
 {% block style %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<style>
+  .card {
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    object-fit: cover;
+    height: 200px; /* Set a fixed height for images */
+    width: 100%;
+  }
+
+  .card-body {
+    flex-grow: 1; /* Ensures the card body takes up the remaining space */
+    padding: 15px;
+  }
+
+  .card-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    transition: color 0.3s ease;
+  }
+
+  .card-title:hover {
+    color: #d63384;
+  }
+
+  .price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #d63384;
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  .btn-secondary {
+    background-color: #d63384;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+
+  .pagination .btn {
+    border-radius: 25px;
+    padding: 8px 15px;
+    margin: 0 5px;
+  }
+
+  .pagination .btn:hover {
+    background-color: #d63384;
+    color: white;
+  }
+
+  .pagination span {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+  }
+</style>
 {% endblock %}
 {% block content %}
-
-
-
 <body>
-  
-  {% include 'navbar.html' %} 
+  {% include 'navbar.html' %}
 
-
-<div class="container">
-  <h1 class="text-center" style="color: black; font-family: 'Arial', sans-serif; font-weight: bold; margin-bottom: 5px;">Latest product:</h1>
+  <div class="container">
+    <h1 class="text-center" style="color: black; font-family: 'Arial', sans-serif; font-weight: bold; margin-bottom: 40px;">Latest Products:</h1>
     <div class="row">
-{% for product in reja %}
-
-        <div class="col-12 col-md-2 col-lg-4 d-flex">
+      {% for product in page_obj %}
+        <div class="col-12 col-md-4 col-lg-3 mb-4">
           <div class="card flex-fill">
-            <img src="{{product.image.url}}" class="card-img" alt="..." class="img-fluid d-block"  alt="..." style="width: 100%;height: 250px; object-fit: cover;">
+            <img src="{{ product.image.url }}" class="card-img" alt="Product image" style="height: 300px;">
             <div class="card-body d-flex flex-column justify-content-between">
               <div>
-              <h5 class="card-title">{{product.name}}</h5>
-              <p>{{product.description}}</p>
-           
+                <h5 class="card-title">{{ product.name }}</h5>
+                <!-- <p>{{ product.description }}</p> -->
+                <p class="price">${{ product.actual_price }}</p>
+              </div>
+              <div class="d-flex w-100 gap-3 p-2">
+                <a href="{% url 'detailpage' product.pk %}" class="btn btn-primary">View Details</a>
+                <a href="{% url 'add_to_cart' pk=product.pk %}" class="btn btn-success">Add to Cart</a>
             </div>
-            <div>
-
-                <p>{{product.actual_price}} ALL</p>
-              <!-- <a href="{% url 'detailpage' product.pk %}" class="btn btn-secondary w-100" style="background-color: #d63384; color: white; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;text-decoration:none;">SEE MORE</a> -->
-              <a href="{% url 'add_to_cart' pk=product.pk %}" class="btn btn-secondary w-100" style="background-color: #d63384; color: white; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;text-decoration:none;">Add to Cart</a>
-
-
-            </div>
+            
+              
             </div>
           </div>
         </div>
-        {% endfor %}
-   
+      {% endfor %}
     </div>
-</div>
-
+  </div>
   
+
+    <!-- Pagination Controls -->
+    <div class="pagination">
+      <div class="d-flex justify-content-center">
+        {% if page_obj.has_previous %}
+          <a href="?page=1" class="btn btn-outline-secondary">First</a>
+          <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-secondary">Previous</a>
+        {% endif %}
+
+        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+        {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-secondary">Next</a>
+          <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-secondary">Last</a>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
 </body>
 {% endblock %}

@@ -199,7 +199,7 @@ body {
 
 
 /* Button Hover Effect */
-.btn-light:hover {
+/* .btn-light:hover {
   background-color: #ff8ab6 !important;
   color: white;
   transform: scale(1.05);
@@ -207,7 +207,7 @@ body {
 
 .card-img-top:hover {
   transform: scale(1.05);
-}
+} */
 
 .contact-title {
   font-family: 'Georgia', serif;

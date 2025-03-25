@@ -3,6 +3,7 @@ from .models import *
 from django.db.models import Q
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
+from django.core.paginator import Paginator 
 
 def home(request):
     carousel_images = CarouselImage.objects.all()  
@@ -49,13 +50,22 @@ def arrival(request, id):
     cat = Makeup.objects.all()
     cate = Skincare.objects.all()
     categ = Accessor.objects.all()
-
     arrivals = Arrival.objects.get(pk=id)  
     reja = Product.objects.filter(arrival_id=arrivals)
+    arrival=Product.objects.filter(arrival_id=arrivals)
+    paginator = Paginator(arrival, 8)  # Show 10 products per page
+
+    # Get the page number from the query string (default to page 1)
+    page_number = request.GET.get('page')
+    
+    # Get the page object based on the page number
+    page_obj = paginator.get_page(page_number)
+
     context = {"arrivals": arrivals, "reja": reja,'categories': categories,
         'cat': cat,
         'cate': cate,
-        'categ': categ,} 
+        'categ': categ,
+        'page_obj': page_obj,} 
     return render(request, 'arrival.html', context)
 
 
@@ -113,6 +123,17 @@ def about(request):
         'cate': cate,
         'categ': categ,}
     return render(request, 'about.html', context)
+
+def terms(request):
+    categories = Marka.objects.all()
+    cat = Makeup.objects.all()
+    cate = Skincare.objects.all()
+    categ = Accessor.objects.all()
+    context = {'categories': categories,
+        'cat': cat,
+        'cate': cate,
+        'categ': categ,}
+    return render(request, 'terms.html', context)
 
 def detail(request, id):
     categories = Marka.objects.all()
