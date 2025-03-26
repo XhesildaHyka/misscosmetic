@@ -77,11 +77,24 @@
     font-weight: bold;
     color: #333;
   }
+
+
 </style>
 {% endblock %}
 {% block content %}
 <body>
   {% include 'navbar.html' %}
+
+  <div id="message-container" class="message-container">
+    {% if messages %}
+      <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+  
 
   <div class="container">
     <h1 class="text-center" style="color: black; font-family: 'Arial', sans-serif; font-weight: bold; margin-bottom: 40px;">Latest Products:</h1>
@@ -100,7 +113,6 @@
                 <a href="{% url 'detailpage' product.pk %}" class="btn btn-primary">View Details</a>
                 <a href="{% url 'add_to_cart' pk=product.pk %}" class="btn btn-success">Add to Cart</a>
             </div>
-            
               
             </div>
           </div>
@@ -128,5 +140,22 @@
     </div>
 
   </div>
+  <script>
+    // Show the message when it's added to the cart
+document.addEventListener('DOMContentLoaded', function() {
+  const messageContainer = document.getElementById('message-container');
+  
+  if (messageContainer && messageContainer.children.length > 0) {
+    // Add the "show" class to trigger the animation
+    messageContainer.classList.add('show');
+    
+    // Hide the message after 3 seconds
+    setTimeout(function() {
+      messageContainer.classList.remove('show');
+    }, 3000);
+  }
+});
+
+  </script>
 </body>
 {% endblock %}

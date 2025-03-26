@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -98,15 +99,18 @@ class Contact(models.Model):
             return f"{self.contact_name} {self.contact_lastname}"
     
 
+
 class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     item = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     purchased = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    
 
     def __str__(self):
-        return f'{self.quantity} X {self.item}'
+        return f"{self.quantity} x {self.item.name} (User: {self.user})"
     
     def get_total(self):
         total = self.item.actual_price * self.quantity
@@ -115,6 +119,7 @@ class Cart(models.Model):
 
 
 class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     orderitems = models.ManyToManyField(Cart)
     ordered = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)

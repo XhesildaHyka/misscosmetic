@@ -9,6 +9,16 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efekti i hijes */
   }
 </style>
+{% include 'navbar.html' %}
+ <div id="message-container" class="message-container">
+  {% if messages %}
+    <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
   <h2>Search Results</h2>
 
   {% if posts %}

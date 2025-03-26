@@ -15,3 +15,25 @@
           });
       });
   });
+
+
+//   produktet e kartes
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const messageContainer = document.getElementById('message-container');
+    
+    if (messageContainer && messageContainer.children.length > 0) {
+      // Add the "show" class to trigger the animation
+      messageContainer.style.display = 'block';
+      messageContainer.style.opacity = '1';
+      messageContainer.style.transform = 'translateX(-50%) translateY(0)';
+      
+      // Hide the message after 3 seconds
+      setTimeout(function() {
+        messageContainer.style.display = 'none';
+        messageContainer.style.opacity = '0';
+        messageContainer.style.transform = 'translateX(-50%) translateY(100px)';
+      }, 3000);
+    }
+  });

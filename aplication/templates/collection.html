@@ -20,7 +20,15 @@
   
   {% include 'navbar.html' %} 
 
-
+  <div id="message-container" class="message-container">
+    {% if messages %}
+      <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
 <div class="container">
     <div class="row">
 {% for product in koleksion %}
@@ -36,7 +44,7 @@
             </div>
             <div>
 
-                <p>{{product.actual_price}} ALL</p>
+                <p>$ {{product.actual_price}} </p>
                 <a href="{% url 'detailpage' product.pk %}" class="btn btn-secondary w-100" style="background-color: #d63384; color: white; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;text-decoration:none;">SEE MORE</a>
                 <a href="{% url 'add_to_cart' pk=product.pk %}" style="background-color: green; color: white; text-decoration:none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Add to Cart</a>
 
@@ -47,6 +55,23 @@
         {% endfor %}
    
     </div>
+        <!-- Pagination Controls -->
+        <div class="pagination">
+          <div class="d-flex justify-content-center">
+            {% if page_obj.has_previous %}
+              <a href="?page=1" class="btn btn-outline-secondary">First</a>
+              <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-secondary">Previous</a>
+            {% endif %}
+    
+            <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    
+            {% if page_obj.has_next %}
+              <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-secondary">Next</a>
+              <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-secondary">Last</a>
+            {% endif %}
+          </div>
+        </div>
+    
 </div>
 
   
