@@ -7,6 +7,16 @@
 
 {% block content %}
 {% include 'navbar.html' %}
+<div id="message-container" class="message-container">
+  {% if messages %}
+    <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+
 
 <style>
   /* Star rating container */
@@ -26,7 +36,7 @@
 </style>
 
 <body>
-
+ 
   <!-- MAIN SECTION -->
   <section class="krye">
     <div class="container">

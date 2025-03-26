@@ -8,6 +8,15 @@
 {% block content %}
 
 {% include 'navbar.html' %}
+<div id="message-container" class="message-container">
+  {% if messages %}
+    <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
 <div class="container py-5">
   <h1 class="text-center mb-5" style="color: #ff8ab6; font-family: 'Arial', sans-serif; font-weight: bold;">{{ makeup.makeup_title }}</h1>
 
@@ -17,7 +26,7 @@
       <div class="card shadow-lg border-0 rounded-lg overflow-hidden">
         <img src="{% if mark.image %}{{ mark.image.url }}{% else %}{% static 'path/to/default/image.jpg' %}{% endif %}" class="card-img-top d-block mx-auto" alt="Image" style="max-height: 250px; object-fit: cover; border-radius: 10px;">
 
-        <div class="card-body" style="background-color: #fff9f9;">
+        <div class="card-body" style="background-color: #fff9f9;height: 400px;">
           <h5 class="card-title text-truncate" style="color: #ff8ab6; font-size: 1.2rem; font-family: 'Georgia', serif; font-weight: bold;">{{ mark.name }}</h5>
           <p class="card-text" style="color: #d98cd5; font-weight: bold; font-size: 1.1rem;">{{ mark.actual_price }} ALL</p>
           <p class="card-text" style="color: #777; font-size: 1rem; font-style: italic; line-height: 1.5;">{{ mark.description }}</p>
@@ -28,6 +37,23 @@
     </div>
     {% endfor %}
   </div>
+      <!-- Pagination Controls -->
+      <div class="pagination">
+        <div class="d-flex justify-content-center">
+          {% if page_obj.has_previous %}
+            <a href="?page=1" class="btn btn-outline-secondary">First</a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-secondary">Previous</a>
+          {% endif %}
+  
+          <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+  
+          {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-secondary">Next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-secondary">Last</a>
+          {% endif %}
+        </div>
+      </div>
+  
 </div>
 
 {% endblock %}

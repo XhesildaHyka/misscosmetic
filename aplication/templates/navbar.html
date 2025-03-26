@@ -34,7 +34,8 @@
                     </a>
                     <ul class="dropdown-menu">
                         {% for makeup in cat %}
-                        <li><a class="dropdown-item" href="{% url 'makeup' makeup.pk %}">{{ makeup.makeup_title }}</a></li>
+                        <li><a class="dropdown-item" href="{% url 'makeup' makeup.pk %}">{{ makeup.makeup_title }}</a>
+                        </li>
                         {% endfor %}
                     </ul>
                 </li>
@@ -45,7 +46,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         {% for skincare in cate %}
-                        <li><a class="dropdown-item" href="{% url 'skincare' skincare.pk %}">{{ skincare.skincare_title }}</a></li>
+                        <li><a class="dropdown-item" href="{% url 'skincare' skincare.pk %}">{{ skincare.skincare_title}}</a></li>
                         {% endfor %}
                     </ul>
                 </li>
@@ -56,36 +57,44 @@
                     </a>
                     <ul class="dropdown-menu">
                         {% for accessor in categ %}
-                        <li><a class="dropdown-item" href="{% url 'accessor' accessor.pk %}">{{ accessor.accessor_title }}</a></li>
+                        <li><a class="dropdown-item" href="{% url 'accessor' accessor.pk %}">{{ accessor.accessor_title}}</a></li>
                         {% endfor %}
                     </ul>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'about'  %}">About us </a>
+                    <a class="nav-link" href="{% url 'about'  %}" style="white-space: nowrap;">About us </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'contact'  %}">Contact</a>
                 </li>
+                <li class="nav-item">
+                {% if user.is_authenticated %}
+                <li><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                <li><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                <li><a class="nav-link" href="{% url 'signup' %}">SignUp</a></li>
+                {% endif %}
+            </li>
             </ul>
 
             <form id="searchForm" class="d-flex ms-4 gap-3" role="search" action="{% url 'search' %}" method="get">
-                <input class="form-control border rounded-pill" type="search" name="search" placeholder="Search" aria-label="Search" required>
+                <input class="form-control border rounded-pill" type="search" name="search" placeholder="Search"
+                    aria-label="Search" required>
                 <button class="btn btn-light rounded-pill" type="submit">🔍</button>
-                
-                    <a class="nav-link" href="{% url 'cart' %}"> <button class="btn btn-light rounded-pill" type="button">🛒</button></a>
-              
+
+                <a class="nav-link" href="{% url 'cart' %}"> <button class="btn btn-light rounded-pill"
+                        type="button">🛒</button></a>
+
             </form>
         </div>
     </div>
 
 </nav>
-  <script>
-        document.querySelector('#searchForm button').addEventListener('click', function(event) {
-          const query = document.querySelector('input[name="search"]').value; // Get the search query
-          window.location.href = `{% url 'search' %}?search=${query}`;  // Redirect to the search results page
-        });
-      </script>
-      
-
+<script>
+    document.querySelector('#searchForm button').addEventListener('click', function (event) {
+        const query = document.querySelector('input[name="search"]').value; // Get the search query
+        window.location.href = `{% url 'search' %}?search=${query}`;  // Redirect to the search results page
+    });
+</script>

@@ -19,11 +19,14 @@ body {
 .navbar-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0px;
   font-size: 1.5rem;
   color: white !important;
   font-weight: bold;
   text-decoration: none;
+  padding-left: 0px;
+  margin-left: -100px;
+
 }
 
 .navbar-brand img {
@@ -594,5 +597,51 @@ iframe {
   .categories {
     width: 329%;
     margin-left: -252px;
+  }
+}
+
+/* popup message for the cart */
+.message-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #28a745; /* Green background for success */
+  color: white;
+  padding: 15px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  display: none; /* Initially hidden */
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 9999;
+}
+
+.message-container.show {
+  display: block;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.message-container ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.message-container li {
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes popUp {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

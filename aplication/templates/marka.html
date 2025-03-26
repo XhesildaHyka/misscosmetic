@@ -8,6 +8,15 @@
 {% block content %}
 
 {% include 'navbar.html' %}
+<div id="message-container" class="message-container">
+  {% if messages %}
+    <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
 <div class="container py-5">
   <h1 class="text-center mb-5" style="color: #ff8ab6; font-family: 'Arial', sans-serif; font-weight: bold;">{{ marka.marka_title }}</h1>
 
@@ -31,7 +40,43 @@
     </div>
     {% endfor %}
   </div>
+      <!-- Pagination Controls -->
+      <div class="pagination">
+        <div class="d-flex justify-content-center">
+          {% if page_obj.has_previous %}
+            <a href="?page=1" class="btn btn-outline-secondary">First</a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-secondary">Previous</a>
+          {% endif %}
+  
+          <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+  
+          {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-secondary">Next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-secondary">Last</a>
+          {% endif %}
+        </div>
+      </div>
+  
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const messageContainer = document.getElementById('message-container');
+    
+    if (messageContainer && messageContainer.children.length > 0) {
+      // Add the "show" class to trigger the animation
+      messageContainer.style.display = 'block';
+      messageContainer.style.opacity = '1';
+      messageContainer.style.transform = 'translateX(-50%) translateY(0)';
+      
+      // Hide the message after 3 seconds
+      setTimeout(function() {
+        messageContainer.style.display = 'none';
+        messageContainer.style.opacity = '0';
+        messageContainer.style.transform = 'translateX(-50%) translateY(100px)';
+      }, 3000);
+    }
+  });
+</script>
 
 {% endblock %}
 

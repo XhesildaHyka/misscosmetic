@@ -1,0 +1,51 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card shadow-lg p-4" style="width: 400px; border-radius: 12px; background-color: #ffe6f2; border: none;">
+        <h2 class="text-center mb-4" style="color: #d63384;">Sign Up</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label class="form-label" style="color: #d63384;">Username</label>
+                <input type="text" name="username" class="form-control" 
+                    placeholder="Enter username" required 
+                    style="border: 1px solid #d63384; background-color: #fff0f5;">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" style="color: #d63384;">Email</label>
+                <input type="email" name="email" class="form-control" 
+                    placeholder="Enter email" required 
+                    style="border: 1px solid #d63384; background-color: #fff0f5;">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" style="color: #d63384;">Password</label>
+                <input type="password" name="password1" class="form-control" 
+                    placeholder="Enter password" required 
+                    style="border: 1px solid #d63384; background-color: #fff0f5;">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" style="color: #d63384;">Confirm Password</label>
+                <input type="password" name="password2" class="form-control" 
+                    placeholder="Confirm password" required 
+                    style="border: 1px solid #d63384; background-color: #fff0f5;">
+            </div>
+
+            <button type="submit" class="btn w-100" style="background-color: #d63384; color: white; border-radius: 20px;">
+                Register
+            </button>
+        </form>
+
+        <div class="text-center mt-3">
+            <small style="color: #d63384;">Already have an account? 
+                <a href="{% url 'login' %}" class="text-decoration-none" style="color: #a8326d;">Login</a>
+            </small>
+        </div>
+    </div>
+</div>
+{% endblock %}

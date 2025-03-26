@@ -61,7 +61,15 @@
 
 {% block content %}
 {% include 'navbar.html' %}
-
+<div id="message-container" class="message-container">
+  {% if messages %}
+    <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
 <div class="container py-5">
   <div class="row justify-content-center">
     <div class="col-md-10 col-lg-8">
@@ -75,7 +83,7 @@
           <div class="col-md-6 d-flex flex-column justify-content-center p-4">
             <h2>{{ detailItem.name }}</h2>
             <p>{{ detailItem.description }}</p>
-            <p class="price">{{ detailItem.actual_price }} ALL</p>
+            <p class="price">${{ detailItem.actual_price }}</p>
             <div class="mt-3 d-flex gap-3">
               <a href="{% url 'home' %}" class="btn btn-custom btn-back">Back to Home</a>
               <a href="{% url 'add_to_cart' detailItem.id %}" class="btn btn-custom btn-cart">Add to Cart</a>
