@@ -1,6 +1,14 @@
-{% extends "index.html" %}
+{% extends 'index.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
 
 {% block content %}
+
+{% include 'navbar.html' %}
+
+
 <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
     <div class="card shadow-lg p-4" style="width: 350px; border-radius: 12px; background-color: #ffe6f2; border: none;">
         <h2 class="text-center mb-4" style="color: #d63384;">Login</h2>

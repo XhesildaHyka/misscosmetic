@@ -37,3 +37,20 @@
       }, 3000);
     }
   });
+
+
+  // Show the message when it's added to the cart
+document.addEventListener('DOMContentLoaded', function() {
+const messageContainer = document.getElementById('message-container');
+
+if (messageContainer && messageContainer.children.length > 0) {
+  // Add the "show" class to trigger the animation
+  messageContainer.classList.add('show');
+  
+  // Hide the message after 3 seconds
+  setTimeout(function() {
+    messageContainer.classList.remove('show');
+  }, 3000);
+}
+});
+
