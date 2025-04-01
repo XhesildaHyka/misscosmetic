@@ -80,7 +80,7 @@
 
 
   <!-- NEW ARRIVALS -->
-  <main style="margin-bottom: 50px;">
+  <main style="margin-bottom: 50px; position: relative;">
     <section class="container my-5" id="arrival-section">
       <h1 class="text-center mb-4"
         style="font-size: 2rem; font-weight: 600; color: #100f10; font-family: Georgia, 'Times New Roman', Times, serif;">
@@ -88,7 +88,7 @@
       </h1>
 
       <!-- Scrollable Container for Latest Arrivals -->
-      <div class="arrivals-container" id="arrival-gallery"
+      <div class="arrivals-container" id="arrival-scroll"
         style="display: flex; overflow-x: auto; scroll-behavior: smooth; width: 100%; justify-content: flex-start; position: relative; padding-bottom: 20px;">
         {% for arrival in arrivals %}
         <div class="arrival-item card mx-3" style="flex-shrink: 0; width: 250px; transition: transform 0.3s ease;">
@@ -107,13 +107,13 @@
       </div>
 
       <!-- Custom Navigation Buttons -->
-      <span class="scroll-btn left" onclick="scrollArrivals(-1)"
-        style="position: absolute; top: 150%; left: 10px; transform: translateY(-50%); font-size: 2rem; color: #d63384; cursor: pointer; transition: color 0.3s;">
+      <span class="scroll-btn left" class="arrivalscroll1" onclick="scrollArrivals(-1)"
+        style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); font-size: 2rem; color: #d63384; cursor: pointer; transition: color 0.3s; z-index: 10;">
         &#60;
       </span>
 
-      <span class="scroll-btn right" onclick="scrollArrivals(1)"
-        style="position: absolute; top: 150%; right: 10px; transform: translateY(-50%); font-size: 2rem; color: #d63384; cursor: pointer; transition: color 0.3s;">
+      <span class="scroll-btn right" class="arrivalscroll2" onclick="scrollArrivals(1)"
+        style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); font-size: 2rem; color: #d63384; cursor: pointer; transition: color 0.3s; z-index: 10;">
         &#62;
       </span>
     </section>
@@ -170,12 +170,13 @@
 
       <!-- Custom Navigation Buttons -->
       <span class="scroll-btn left" onclick="scrollBestsellers(-1)"
-        style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); font-size: 2rem; color: #d63384; cursor: pointer; transition: color 0.3s;">
+        style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); font-size: 2rem; color: #d63384; cursor: pointer; transition: color 0.3s; z-index: 10;">
         &#60;
       </span>
 
       <span class="scroll-btn right" onclick="scrollBestsellers(1)"
-        style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); font-size: 2rem; color: #d63384; cursor: pointer; transition: color 0.3s;">
+        style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); font-size: 2rem; color: #d63384; cursor: pointer; transition: color 0.3s; z-index: 10;">
+        
         &#62;
       </span>
     </section>
@@ -184,15 +185,15 @@
 
 
   <!-- Carousel -->
-  <main>
+  <main style="position: relative; ">
     <h1 class="text-center mb-4"
       style="font-size: 2rem; font-weight: 600; color: #100f10; font-family:Georgia, 'Times New Roman', Times, serif;">Our Curated Beauty Selection
     </h1>
     <div id="carousel-container"
-      style="width: 80%; max-width: 600px; margin: 50px auto; padding: 20px; border-radius: 12px; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); text-align: center; background-color: white; position: relative; overflow: hidden;">
+      style="width: 80%; margin: 50px auto; padding: 20px; border-radius: 12px; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); text-align: center; background-color: white; position: relative; overflow: hidden;">
 
       <!-- Slides Wrapper -->
-      <div style="display: flex; width: 100%; overflow: hidden; justify-content: center; align-items: center;">
+      <div style="display: flex; width: 100%; justify-content: center; align-items: center;">
 
         <!-- Inner Slides Container -->
         <div id="carousel-slides" style="display: flex; transition: transform 0.5s ease-in-out; width: 300%;">
@@ -203,8 +204,8 @@
             <img src="{% static 'image/blush.jpeg' %}" alt="Face Blushes"
               style="width: 150px; height: 150px; border-radius: 10px; box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);">
             <h2 style="color: #d63384; font-size: 22px;">Face Blushes</h2>
-            <p style="color: #444; font-size: 15px; max-width: 80%; line-height: 1.6;">"Add a touch of color and
-              radiance to your cheeks with our stunning collection of blushes. From soft, natural hues to bold,
+            <p style="color: #444; font-size: 15px; line-height: 1.6;">"Add a touch of color and
+              radiance to your cheeks with our stunning collection of blushes.<br> From soft, natural hues to bold,
               statement shades, find the perfect blush to enhance your beauty."</p>
           </div>
 
@@ -214,8 +215,8 @@
             <img src="{% static 'image/lip.jpeg' %}" alt="Lipsticks"
               style="width: 150px; height: 150px; border-radius: 10px; box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);">
             <h2 style="color: #d63384; font-size: 22px;">Lipsticks</h2>
-            <p style="color: #444; font-size: 15px; max-width: 80%; line-height: 1.6;">"Elevate your look with our
-              irresistible collection of lipsticks. Whether you’re going for a classic red, a soft nude, or a daring pop
+            <p style="color: #444; font-size: 15px; line-height: 1.6;">"Elevate your look with our
+              irresistible collection of lipsticks. Whether you’re going for a classic red, a soft nude,<br>  or a daring pop
               of color, our long-lasting formulas will keep you flawless all day."</p>
           </div>
 
@@ -225,8 +226,8 @@
             <img src="{% static 'image/furc.jpeg' %}" alt="Accessories"
               style="width: 150px; height: 150px; border-radius: 10px; box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);">
             <h2 style="color: #d63384; font-size: 22px;">Accessories</h2>
-            <p style="color: #444; font-size: 15px; max-width: 80%; line-height: 1.6;">"Complete your beauty routine
-              with our premium makeup brushes, designed for precision and flawless application. Achieve a smooth,
+            <p style="color: #444; font-size: 15px;  line-height: 1.6;">"Complete your beauty routine
+              with our premium makeup brushes, designed for precision <br> and flawless application. Achieve a smooth,
               professional finish every time!"</p>
           </div>
 
@@ -307,12 +308,12 @@
   
       <!-- Custom Navigation Buttons -->
       <span class="scroll-btn left" onclick="scrollOffers(-1)"
-        style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); font-size: 2.5rem; color: #d63384; cursor: pointer; transition: color 0.3s, transform 0.3s; padding: 10px; border-radius: 50%; background-color: rgba(0, 0, 0, 0.1);">
+        style="position: absolute; left: 10px; transform: translateY(-50%); font-size: 2.5rem; color: #d63384; cursor: pointer; transition: color 0.3s, transform 0.3s; padding: 10px; border-radius: 50%; background-color: rgba(0, 0, 0, 0.1); z-index: 10;">
         &#60;
       </span>
   
       <span class="scroll-btn right" onclick="scrollOffers(1)"
-        style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); font-size: 2.5rem; color: #d63384; cursor: pointer; transition: color 0.3s, transform 0.3s; padding: 10px; border-radius: 50%; background-color: rgba(0, 0, 0, 0.1);">
+        style="position: absolute; right: 10px; transform: translateY(-50%); font-size: 2.5rem; color: #d63384; cursor: pointer; transition: color 0.3s, transform 0.3s; padding: 10px; border-radius: 50%; background-color: rgba(0, 0, 0, 0.1); z-index: 10;">
         &#62;
       </span>
     </section>
@@ -402,12 +403,9 @@
 <!-- javascript to handle scrolling for arrivals -->
 <script>
   function scrollArrivals(direction) {
-    const container = document.getElementById('arrival-gallery');
-    const scrollAmount = 300; // You can adjust this value for how far you want to scroll
-    container.scrollBy({
-      left: direction * scrollAmount,
-      behavior: 'smooth'
-    });
+    const container = document.getElementById('arrival-scroll');
+    const scrollAmount = 300; 
+    container.scrollBy({left: direction * scrollAmount,behavior: 'smooth'});
   }
 </script>
 
@@ -415,7 +413,7 @@
 <script>
   function scrollBestsellers(direction) {
     const container = document.getElementById("bestseller-scroll");
-    const scrollAmount = 300; // Adjust scrolling speed
+    const scrollAmount = 300;
     container.scrollBy({ left: direction * scrollAmount, behavior: "smooth" });
   }
 </script>
@@ -424,7 +422,7 @@
 <script>
   function scrollOffers(direction) {
     const container = document.getElementById("offers-scroll");
-    const scrollAmount = 300; // Adjust scrolling speed
+    const scrollAmount = 300; 
     container.scrollBy({ left: direction * scrollAmount, behavior: "smooth" });
   }
 </script>

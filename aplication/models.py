@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django import forms
 # Create your models here.
 
 
@@ -104,31 +104,45 @@ class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     item = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
-    purchased = models.BooleanField(default=False)
+    purchased = models.BooleanField(default=False)  # Track if the item is purchased
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    
 
     def __str__(self):
         return f"{self.quantity} x {self.item.name} (User: {self.user})"
-    
-    def get_total(self):
-        total = self.item.actual_price * self.quantity
-        float_total = format(total, '0.2f')
-        return float_total
 
+    def get_total(self):
+        return float(self.item.actual_price) * self.quantity
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     orderitems = models.ManyToManyField(Cart)
     ordered = models.BooleanField(default=False)
+    full_name = models.CharField(max_length=100, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
+    billing_address = models.TextField(blank=True, null=True)
+    phone = models.CharField(max_length=15, blank=True, null=True)
+    payment_method = models.CharField(
+        max_length=10,
+        choices=[('cod', 'Cash on Delivery')],
+        blank=True,
+        null=True
+    )
 
     def __str__(self):
-        return f'{self.created}'
+        return f'Order {self.id} - {self.full_name or self.user}'
 
     def get_totals(self):
-        total = 0
-        for order_item in self.orderitems.all():
-            total += float(order_item.get_total())
+        # Corrected total calculation using the actual_price of the Product
+        total = sum(item.quantity * item.item.actual_price for item in self.orderitems.all())
         return total
+
+
+class CheckoutForm(forms.Form):
+    full_name = forms.CharField(max_length=100)
+    address = forms.CharField(widget=forms.Textarea)
+    city = forms.CharField(max_length=100)
+    phone = forms.CharField(max_length=15)
+    payment_method = forms.ChoiceField(choices=[('cod', 'Cash on Delivery')])
+
+
