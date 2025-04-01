@@ -54,3 +54,23 @@ if (messageContainer && messageContainer.children.length > 0) {
 }
 });
 
+// login first
+// Example JavaScript code for handling the add to cart AJAX response
+function addToCart(productId) {
+  $.ajax({
+      url: '/add_to_cart/' + productId + '/',
+      type: 'GET',
+      success: function(response) {
+          if (response.message) {
+              alert(response.message);  // Show success message
+          }
+      },
+      error: function(xhr, status, error) {
+          if (xhr.status == 401) {
+              alert("You need to log in first.");  // Show error if not logged in
+              window.location.href = "/accounts/login/?next=" + window.location.pathname;  // Redirect to login
+          }
+      }
+  });
+}
+

@@ -256,9 +256,21 @@ def video(request):
 
 
 
-@login_required
+def is_ajax(request):
+    return request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+
 
 def add_to_cart(request, pk):
+    # Ensure the user is logged in, otherwise handle via AJAX and redirect accordingly
+    if not request.user.is_authenticated:
+        if is_ajax(request):
+            return JsonResponse({'error': 'You need to log in first.'}, status=401)
+        else:
+            # For regular request, redirect to login
+            messages.error(request, 'You need to log in first.')
+            return HttpResponseRedirect('/login/?next=' + request.path)
+
+    # If user is authenticated, proceed with adding the item to cart
     item = get_object_or_404(Product, pk=pk)
     order_item, created = Cart.objects.get_or_create(item=item, user=request.user, purchased=False)
     order_qs = Order.objects.filter(user=request.user, ordered=False)
@@ -275,34 +287,60 @@ def add_to_cart(request, pk):
         order.save()
         order.orderitems.add(order_item)
 
-    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-        message = f"'{item.name}' has been added to your cart."
-        return JsonResponse({'message': message})
+    # For AJAX request, send success message
+    if is_ajax(request):
+        return JsonResponse({'message': f"'{item.name}' has been added to your cart."})
     else:
+        # For non-AJAX request, show success message and redirect back
         messages.success(request, f"'{item.name}' has been added to your cart.")
         referer = request.META.get('HTTP_REFERER')
         return HttpResponseRedirect(referer)
-    
+
+
+
+def is_ajax(request):
+    return request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+
 def cart(request):
+    if not request.user.is_authenticated:
+        if is_ajax(request):
+            return JsonResponse({'error': 'You need to log in first.'}, status=401)
+        else:
+            messages.error(request, 'You need to log in first.')
+            return HttpResponseRedirect('/login/?next=' + request.path)
+
     categories = Marka.objects.all()
     cat = Makeup.objects.all()
     cate = Skincare.objects.all()
     categ = Accessor.objects.all()
-    carts = Cart.objects.filter(purchased=False)
-    orders = Order.objects.filter(ordered=False)
-    if carts.exists() and orders.exists():
-        order = orders[0]
+    carts = Cart.objects.filter(user=request.user, purchased=False)
+    orders = Order.objects.filter(user=request.user, ordered=False)
+
+
+
+    if orders.exists():
+        order = orders.first()
         context = {
-           'categories': categories,
+            'categories': categories,
             'cat': cat,
             'cate': cate,
             'categ': categ,
             'carts': carts,
-            'order': order
+            'order': order,
+            'is_cart_empty': not carts.exists(),
+           
         }
         return render(request, 'cart.html', context)
     else:
-        return redirect('home')
+        context = {
+            'categories': categories,
+            'cat': cat,
+            'cate': cate,
+            'categ': categ,
+            'is_cart_empty': True,
+            
+        }
+        return render(request, 'cart.html', context)
 
 @login_required
 def remove_item(request, pk):
@@ -359,6 +397,10 @@ def decrease_item(request, pk):
         return redirect('cart')
 
 def register(request):
+    categories = Marka.objects.all()
+    cat = Makeup.objects.all()
+    cate = Skincare.objects.all()
+    categ = Accessor.objects.all()
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -367,9 +409,21 @@ def register(request):
             return redirect('login')
     else:
         form = UserCreationForm()
-    return render(request, 'signup.html', {'form': form})
+    context={
+        'categories':categories,
+        'cat':cat,
+        'cate':cate,
+        'categ':categ,
+        'form':form,
+    }
+    return render(request, 'signup.html',context)
 
 def user_login(request):
+    categories = Marka.objects.all()
+    cat = Makeup.objects.all()
+    cate = Skincare.objects.all()
+    categ = Accessor.objects.all()
+
     if request.user.is_authenticated:
         return redirect('/')  # Redirect if already logged in
 
@@ -380,14 +434,19 @@ def user_login(request):
 
         if user is not None:
             login(request, user)
-            next_url = request.GET.get('next')  # Get intended destination
+            next_url = request.GET.get('next')  # Get the next URL after login
             messages.success(request, "You have been logged in successfully.")
             return redirect(next_url if next_url else '/')  # Redirect accordingly
         else:
             messages.error(request, "Invalid username or password.")
 
-    return render(request, 'login.html')
-
+    context = {
+        'categories': categories,
+        'cat': cat,
+        'cate': cate,
+        'categ': categ,
+    }
+    return render(request, 'login.html', context)
 def user_logout(request):
     logout(request)
     request.session.flush()  # Clears session data
@@ -395,18 +454,30 @@ def user_logout(request):
     return redirect('login')
 
 
+def is_ajax(request):
+    return request.headers.get('X-Requested-With') == 'XMLHttpRequest'
 
-@login_required
+
 def cart(request):
+
+    if not request.user.is_authenticated:
+        if is_ajax(request):
+            return JsonResponse({'error': 'You need to log in first.'}, status=401)
+        else:
+            # For regular request, redirect to login
+            messages.error(request, 'You need to log in first.')
+            return HttpResponseRedirect('/login/?next=' + request.path)
+
     categories = Marka.objects.all()
     cat = Makeup.objects.all()
     cate = Skincare.objects.all()
     categ = Accessor.objects.all()
     
-    # Filter carts and orders by the logged-in user
+  
     carts = Cart.objects.filter(user=request.user, purchased=False)
     orders = Order.objects.filter(user=request.user, ordered=False)
     
+    total_price = sum(cart.get_total() for cart in carts)
     if orders.exists():
         order = orders.first()
         context = {
@@ -416,7 +487,8 @@ def cart(request):
             'categ': categ,
             'carts': carts,
             'order': order,
-            'is_cart_empty': not carts.exists()  # True if no items in cart
+            'is_cart_empty': not carts.exists(),
+            'total_price':total_price,
         }
         return render(request, 'cart.html', context)
     else:
@@ -425,6 +497,50 @@ def cart(request):
             'cat': cat,
             'cate': cate,
             'categ': categ,
-            'is_cart_empty': True  # Cart is empty if no active orders
+            'is_cart_empty': True ,
+            'total_price':total_price,
         }
         return render(request, 'cart.html', context)
+   
+
+@login_required
+def checkout(request):
+    if request.method == "POST":
+        form = CheckoutForm(request.POST)
+        if form.is_valid():
+            # Retrieve active cart items that haven't been purchased
+            cart_items = Cart.objects.filter(user=request.user, purchased=False)
+
+            if cart_items.exists():
+                # Create a new order and save the form data
+                order = Order.objects.create(
+                    user=request.user,
+                    full_name=form.cleaned_data['full_name'],
+                    billing_address=form.cleaned_data['address'],
+                    phone=form.cleaned_data['phone'],
+                    payment_method=form.cleaned_data['payment_method'],
+                    ordered=False  # Initially set to False
+                )
+
+                # Add cart items to order
+                order.orderitems.set(cart_items)
+
+                # Mark cart items as purchased and set the order as 'ordered'
+                cart_items.update(purchased=True)
+
+                # Update the order status to 'ordered' after successful cart item update
+                order.ordered = True
+                order.save()
+
+                # Redirect after success
+                return redirect('order_success')
+
+    else:
+        form = CheckoutForm()
+
+    return render(request, "checkout.html", {"form": form})
+
+def order_success(request):
+    return render(request, "order_success.html")
+
+
