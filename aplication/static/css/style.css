@@ -428,14 +428,38 @@ iframe {
 
 /* Responsive Fixes */
 
-@media screen and (max-width: 1024px) {
+@media screen and(max-width:2560) {
   .scroll-btn.left {
-    top:60%;
+    top:50%;
     left: 10px;
   }
   
   .scroll-btn.right {
-    top:60%;
+    top:50%;
+    right: 10px;
+  }
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    font-size: 1.5rem;
+    color: white !important;
+    font-weight: bold;
+    text-decoration: none;
+    padding-left: 7px;
+    margin-left: -100px;
+  
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .scroll-btn.left {
+    top:50%;
+    left: 10px;
+  }
+  
+  .scroll-btn.right {
+    top:50%;
     right: 10px;
   }
   .navbar-brand {

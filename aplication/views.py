@@ -240,8 +240,9 @@ def accessor(request, accessor_id):
 def search(request):
     search = request.GET.get("search")
     if search:
+      
         posts = Product.objects.filter(
-            Q(name__icontains=search) 
+            Q(name__icontains=search)
         )
     else:
         posts = Product.objects.all()
@@ -505,6 +506,10 @@ def cart(request):
 
 @login_required
 def checkout(request):
+    categories = Marka.objects.all()
+    cat = Makeup.objects.all()
+    cate = Skincare.objects.all()
+    categ = Accessor.objects.all()
     if request.method == "POST":
         form = CheckoutForm(request.POST)
         if form.is_valid():
@@ -538,9 +543,20 @@ def checkout(request):
     else:
         form = CheckoutForm()
 
-    return render(request, "checkout.html", {"form": form})
+    # Retrieve the cart items for the receipt section
+    carts = Cart.objects.filter(user=request.user, purchased=False)
+
+    # Calculate the total price for the receipt
+    total_price = sum(cart.get_total() for cart in carts)
+
+    return render(request, "checkout.html", {
+        "form": form,
+        "carts": carts,
+        "total_price": total_price
+    })
 
 def order_success(request):
+    
     return render(request, "order_success.html")
 
 

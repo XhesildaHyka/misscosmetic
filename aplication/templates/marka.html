@@ -98,13 +98,13 @@
           <div class="d-flex flex-end justify-content-between ">
             <!-- Quick View Button -->
             <button class="btn btn-custom w-48" data-bs-toggle="modal" data-bs-target="#quickViewModal{{ mark.pk }}" 
-              style="background-color: #ff8ab6; color: white;height:64px; border-radius: 25px; font-weight: bold; font-size: 1rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+              style="background-color: #ff8ab6; color: white;height:42px; border-radius: 25px; font-weight: bold; font-size: 1rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
               Quick View
             </button>
             
             <!-- Add to Cart Button -->
             <a href="{% url 'add_to_cart' pk=mark.pk %}" class="btn btn-custom w-48 mt-2" 
-              style="background-color: #8fd9e6; height:64px; color: white; border-radius: 25px; font-weight: bold; font-size: 1rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+              style="background-color: #8fd9e6; height:42px; color: white; border-radius: 25px; font-weight: bold; font-size: 1rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
               Add to Cart
             </a>
           </div>
@@ -138,7 +138,7 @@
   </div>
 
   <!-- Pagination Controls -->
-  <div class="pagination">
+  <div class="pagination" style="margin-left: 560px;">
     <div class="d-flex justify-content-center">
       {% if page_obj.has_previous %}
       <a href="?page=1" class="btn btn-outline-secondary">First</a>

@@ -140,7 +140,7 @@ class Order(models.Model):
 
 class CheckoutForm(forms.Form):
     full_name = forms.CharField(max_length=100)
-    address = forms.CharField(widget=forms.Textarea)
+    address = forms.CharField(max_length=100)
     city = forms.CharField(max_length=100)
     phone = forms.CharField(max_length=15)
     payment_method = forms.ChoiceField(choices=[('cod', 'Cash on Delivery')])

@@ -115,11 +115,11 @@
           <p class="card-text" style="color: #d98cd5; font-weight: bold; font-size: 1.1rem;">${{ mark.actual_price }}</p>
 
           <div class="d-flex justify-content-between">
-            <button class="btn btn-custom w-48" data-bs-toggle="modal" data-bs-target="#quickViewModal{{ mark.pk }}" style="background-color: #ff8ab6; color: white; height:64px; border-radius: 25px; font-weight: bold; font-size: 1rem;">
+            <button class="btn btn-custom w-48" data-bs-toggle="modal" data-bs-target="#quickViewModal{{ mark.pk }}" style="background-color: #ff8ab6; color: white; height:42px; border-radius: 25px; font-weight: bold; font-size: 1rem;">
               Quick View
             </button>
 
-            <a href="{% url 'add_to_cart' pk=mark.pk %}" class="btn btn-custom w-48" style="background-color: #8fd9e6; height:64px; color: white; border-radius: 25px; font-weight: bold; font-size: 1rem;">
+            <a href="{% url 'add_to_cart' pk=mark.pk %}" class="btn btn-custom w-48" style="background-color: #8fd9e6; height:42px; color: white; border-radius: 25px; font-weight: bold; font-size: 1rem;">
               Add to Cart
             </a>
           </div>
